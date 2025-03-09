@@ -1,4 +1,4 @@
-🚀 **Obsidian 기반 블로그 Quartz 설정부터, Cloudflare Pages 배포, 도메인 연결까지!**
+🚀**Obsidian 기반 블로그 Quartz 설정부터, Cloudflare Pages 배포, 도메인 연결까지!**
 
 ## **1. 옵시디언 기반 블로그 Quartz 세팅**
 
@@ -97,10 +97,9 @@ Cloudflare DNS를 활용하면서, 이후 **SSL 설정 및 성능 최적화도 �
 이렇게 해서, **HeyB 블로그는 Obsidian 기반의 Quartz로 구축**했고,  
 Cloudflare Pages를 통해 **자동 배포 및 도메인 연동까지 완료**했음. 🚀✨
 
-📌 **이 과정에서 가장 까다로웠던 부분은?**
-
-- `.lock` 파일 충돌 이슈 🔧
-- 적절한 도메인 선택 고민 🤔
-- Cloudflare로의 DNS 이전 📡
+ **이 과정에서 가장 까다로웠던 부분은?**
+- `.lock` 파일 충돌 이슈 
+- 적절한 도메인 선택 고민 
+- Cloudflare로의 DNS 이전 
 
 하지만, 하나하나 해결하면서 **드디어 첫  블로그 오픈!!!!**
