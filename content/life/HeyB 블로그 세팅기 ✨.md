@@ -2,6 +2,9 @@
 description: Obsidian 기반 블로그 Quartz 설정부터, Cloudflare Pages 배포, 도메인 연결까지!
 tags:
   - Obsidian
+  - Quartz
+  - DNS
+  - Blog
 aliases:
   - HeyB 블로그 세팅기 ✨✨
 date:
