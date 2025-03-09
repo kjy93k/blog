@@ -1,6 +1,13 @@
 ---
 description: Obsidian 기반 블로그 Quartz 설정부터, Cloudflare Pages 배포, 도메인 연결까지!
+tags:
+  - Obsidian
+aliases:
+  - HeyB 블로그 세팅기 ✨✨
+date:
 ---
+**Obsidian 기반 블로그 Quartz 설정부터, Cloudflare Pages 배포, 도메인 연결까지!**
+
 ## **1. 옵시디언 기반 블로그 Quartz 세팅**
 
 현재 운영 중인 **HeyB 블로그는 Quartz 기반**으로 구축했음.  
