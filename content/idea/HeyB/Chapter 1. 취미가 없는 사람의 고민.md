@@ -1,5 +1,4 @@
 ---
-title: Chapter 1. 취미가 없는 사람의 고민
 tags:
   - heyb
 ---
