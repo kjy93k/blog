@@ -82,7 +82,7 @@ Cloudflare Pages를 사용하기 위해 **회원가입 후, GitHub 저장소를 
 
 구매한 도메인을 **Cloudflare로 연결하여 DNS를 이전**했음.
 
-### **4.1 네임서버를 Cloudflare로 전파**
+### **4.1 네임서버를 Cloudflare로 전파 **
 
 보통 도메인 구매 시 제공되는 기본 네임서버를 사용할 수도 있지만,  
 Cloudflare의 기능이 더 강력해서 네임서버를 변경했음.
