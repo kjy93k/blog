@@ -1,4 +1,4 @@
-**개발 시작 전에, 먼저 셋팅부터**
+## **개발 시작 전에, 먼저 셋팅부터**
 
   
 
@@ -20,7 +20,7 @@ v1이 나오기 전까지는 **메인 브랜치에서 작업**,
 
 ---
 
-**App Router vs Page Router – 결국 App Router를 선택한 이유**
+## **App Router vs Page Router – 결국 App Router를 선택한 이유**
 
   
 
@@ -78,7 +78,7 @@ v1이 나오기 전까지는 **메인 브랜치에서 작업**,
 
 ---
 
-**App Router를 쓰려면 emotion(css, styled) 못 쓴다고?!**
+## **App Router를 쓰려면 emotion(css, styled) 못 쓴다고?!**
 
   
 
@@ -118,7 +118,7 @@ emotion을 못 쓰게 되면서 스타일링 라이브러리를 다시 고민해
 
 ---
 
-**Compound, Headless 컴포넌트 – 기존 방식이 App Router에서도 괜찮을까?**
+## **Compound, Headless 컴포넌트 – 기존 방식이 App Router에서도 괜찮을까?**
 
   
 
@@ -158,7 +158,7 @@ Compound와 Headless 컴포넌트 패턴은 익숙했지만,
 
 ---
 
-**📌 Compound Component 패턴을 처음 접한 게 아니라, 익숙했지만 App Router에서 혼란스러웠다**
+## **📌 Compound Component 패턴을 처음 접한 게 아니라, 익숙했지만 App Router에서 혼란스러웠다**
 
   
 
@@ -186,7 +186,7 @@ App Router에서 Compound Component를 적용하면서 생긴 고민은 아직�
 
 ---
 
-**Vanilla Extract + Headless 적용… 솔직히 짜증났다**
+## **Vanilla Extract + Headless 적용… 솔직히 짜증났다**
 
   
 
@@ -208,7 +208,7 @@ App Router에서 Compound Component를 적용하면서 생긴 고민은 아직�
 
 ---
 
-**결론 – 예상보다 더 오래 걸린 개발 과정**
+## **결론 – 예상보다 더 오래 걸린 개발 과정**
 
   
 
