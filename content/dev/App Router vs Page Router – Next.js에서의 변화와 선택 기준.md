@@ -156,3 +156,53 @@ export default function Counter() {
   return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
 }
 ```
+
+→ useState를 사용하기 때문에 클라이언트에서 실행되어야 하므로 "use client"를 추가해야 함.
+
+---
+
+**5. App Router가 무조건 정답일까?**
+
+  
+
+App Router가 새로운 방식이라고 해서 무조건 정답은 아니다.
+
+아직 **Page Router에서 필요한 기능들이 있고, App Router가 모든 프로젝트에 적합한 것도 아니다.**
+
+  
+
+**App Router를 선택하는 것이 좋은 경우**
+
+• SEO 최적화가 중요한 프로젝트
+
+• API 요청을 최소화하고, 서버에서 직접 데이터를 가져와야 하는 경우
+
+• SSR과 CSR을 분리해서 성능 최적화를 하고 싶은 경우
+
+  
+
+**Page Router를 유지하는 것이 좋은 경우**
+
+• 기존 Next.js 프로젝트를 유지보수해야 하는 경우
+
+• 현재 App Router로 전환할 필요 없이, 기존 방식이 더 익숙한 경우
+
+• SSG, ISR 같은 기존 방식이 프로젝트에 더 적합한 경우
+
+---
+
+**6. 결론 – App Router로 전환해야 할까?**
+
+  
+
+✔ **Next.js의 공식 방향성은 App Router를 중심으로 가고 있음**
+
+✔ **React Server Component를 활용하면 성능 최적화가 가능**
+
+✔ **하지만 기존 Page Router도 여전히 유효하며, 모든 프로젝트가 App Router로 전환할 필요는 없음**
+
+  
+
+결국 **새로운 프로젝트라면 App Router를 선택하는 것이 유리**하지만,
+
+기존 Page Router 프로젝트라면 **당장 App Router로 전환할 필요는 없다.**
