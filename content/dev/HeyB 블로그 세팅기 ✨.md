@@ -145,7 +145,7 @@ Cloudflare Pages 기본 도메인은 pages.dev였는데,
 
   
 
-**네임서버를 Cloudflare로 변경**
+### **네임서버를 Cloudflare로 변경**
 
   
 
@@ -165,7 +165,7 @@ Cloudflare를 쓰면 **속도도 빠르고, SSL도 자동 적용**되기 때문�
 
   
 
-**Cloudflare를 선택한 이유**
+### **Cloudflare를 선택한 이유**
 
   
 
@@ -187,7 +187,7 @@ SSL 설정이나 성능 최적화도 신경 쓸 필요 없이 **자동 적용**�
 
   
 
-**HeyB 블로그, 이렇게 완성!**
+## **HeyB 블로그, 이렇게 완성!**
 
   
 
