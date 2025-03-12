@@ -39,7 +39,7 @@ dev
 
 [[HeyB 블로그 세팅기 ✨]]
 
-[[App Router vs Page Router – Next.js에서의 변화와 선택 기준]]
+[[Next.js App Router vs Page Router – 실무에서 어떤 선택이 적합할까?]]
 
 idea
 
