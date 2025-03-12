@@ -1,12 +1,16 @@
 Next.js 15에서는 **React Server Components(RSC)**가 기본적으로 사용되며,
 
-이는 기존의 **CSR(Client-Side Rendering), SSR(Server-Side Rendering), SSG(Static Site Generation), ISR(Incremental Static Regeneration)** 방식과 다른 새로운 개념이다.
+이는 기존의 **CSR(Client-Side Rendering), SSR(Server-Side Rendering), SSG(Static Site Generation), ISR(Incremental Static Regeneration)** 방식과 함께 사용할 수 있다.
 
   
 
-**그렇다면 RSC는 기존 CSR/SSR과 어떤 차이가 있을까? 그리고 실무에서는 어떻게 활용하면 좋을까?**
+즉, **App Router에서 기본적으로 RSC를 활용하지만, 필요에 따라 기존 CSR 방식도 그대로 유지할 수 있다.**
 
-이 글에서는 **Next.js에서 제공하는 모든 렌더링 방식(CSR, SSR, SSG, ISR, RSC)을 정리하고, 실무에서 어떻게 활용해야 하는지**를 정리한다.
+그렇다면 **RSC는 기존 CSR/SSR과 어떻게 다르고, 실무에서는 어떻게 조합해서 활용하면 좋을까?**
+
+  
+
+이 글에서는 **Next.js에서 제공하는 모든 렌더링 방식(CSR, SSR, SSG, ISR, RSC)을 정리하고, 실무에서 어떻게 선택해야 하는지**를 정리한다.
 
 ---
 
@@ -32,6 +36,7 @@ Next.js에서는 아래 **5가지 렌더링 방식**을 제공한다.
 
 **📌 1) CSR (Client-Side Rendering, 클라이언트 사이드 렌더링)**
 
+  
 
 **클라이언트에서 JavaScript를 실행하여 UI를 렌더링하는 방식.**
 
@@ -113,122 +118,3 @@ export default function Page({ data }) {
 **빌드 타임에 미리 HTML을 생성하여 저장하는 방식.**
 
 모든 요청은 미리 만들어진 HTML을 반환하므로 **최고의 속도를 제공한다.**
-
-```
-export async function getStaticProps() {
-  const res = await fetch("https://api.example.com/data");
-  const data = await res.json();
-
-  return { props: { data } };
-}
-
-export default function Page({ data }) {
-  return <div>{data.title}</div>;
-}
-```
-
-✅ **장점**
-
-• 정적 페이지라서 속도가 가장 빠름
-
-• SEO 최적화에 유리
-
-  
-
-❌ **단점**
-
-• 데이터를 업데이트하려면 페이지를 다시 빌드해야 함
-
----
-
-**📌 4) ISR (Incremental Static Regeneration, 점진적 정적 재생성)**
-
-  
-
-**SSG와 SSR의 중간 형태.**
-
-빌드 시 정적 HTML을 생성하지만, 일정 주기마다 새로운 데이터를 가져와 HTML을 업데이트할 수 있다.
-
-```
-export async function getStaticProps() {
-  const res = await fetch("https://api.example.com/data");
-  const data = await res.json();
-
-  return { props: { data }, revalidate: 60 }; // 60초마다 데이터 갱신
-}
-
-export default function Page({ data }) {
-  return <div>{data.title}</div>;
-}
-```
-
-✅ **장점**
-
-• 정적 사이트의 속도를 유지하면서도 데이터 갱신 가능
-
-• 서버 부하가 적음
-
-  
-
-❌ **단점**
-
-• 실시간 데이터 반영이 어려울 수 있음
-
----
-
-**📌 5) RSC (React Server Components, App Router 전용)**
-
-  
-
-**서버에서 실행되는 React 컴포넌트로, 클라이언트에서 불필요한 JavaScript를 최소화하는 방식.**
-
-Next.js 15에서는 **기본적으로 RSC를 사용하도록 설계**되었다.
-
-```
-export default async function Page() {
-  const res = await fetch("https://api.example.com/data");
-  const data = await res.json();
-
-  return <div>{data.title}</div>;
-}
-```
-
-✅ **장점**
-
-• 클라이언트에서 불필요한 JS 번들 제거 → 성능 최적화
-
-• API 요청을 서버에서 처리하여 클라이언트 부하 감소
-
-• SEO 최적화 가능 (서버에서 HTML 생성 후 전달)
-
-  
-
-❌ **단점**
-
-• **Server Component에서는 useState, useEffect를 사용할 수 없으며, 이러한 기능이 필요하면 use client를 선언하여 Client Component로 만들어야 한다.**
-
-• 클라이언트와 서버 컴포넌트를 명확하게 구분해야 함
-
----
-
-**3. 실무에서의 렌더링 방식 선택 기준**
-
-|         | **적합한 상황**                           |
-| ------- | ------------------------------------ |
-| **CSR** | 빠른 인터랙션이 필요한 SPA(단일 페이지 애플리케이션)      |
-| **SSR** | SEO가 중요한 페이지, 데이터가 자주 변경되는 페이지       |
-| **SSG** | 콘텐츠가 자주 변하지 않는 정적 웹사이트               |
-| **ISR** | SEO가 중요하면서도 정적 페이지를 갱신해야 하는 경우       |
-| **RSC** | 클라이언트 JS 번들을 줄이고 서버 렌더링을 최적화하고 싶은 경우 |
-
----
-
-**4. 결론 – Next.js에서 어떤 렌더링 방식을 선택해야 할까?**
-
-  
-
-✔ **새로운 Next.js 프로젝트를 시작한다면 RSC를 활용하는 것이 유리하다.**
-
-✔ **하지만 모든 컴포넌트가 RSC로 대체될 수는 없으며, CSR, SSR, ISR과 함께 사용할 수 있다.**
-
-✔ **페이지의 특성과 요구 사항에 따라 가장 적절한 방식을 선택하는 것이 중요하다.**
