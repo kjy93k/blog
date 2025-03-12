@@ -4,13 +4,13 @@ Next.js 15에서는 **React Server Components(RSC)**가 기본적으로 사용�
 
   
 
-즉, **App Router에서 기본적으로 RSC를 활용하지만, 필요에 따라 기존 CSR 방식도 그대로 유지할 수 있다.**
+기존 **SSR은 페이지 단위에서만 적용할 수 있었기 때문에 CSR과 함께 사용하기 어려웠지만,**
 
-그렇다면 **RSC는 기존 CSR/SSR과 어떻게 다르고, 실무에서는 어떻게 조합해서 활용하면 좋을까?**
+RSC는 **컴포넌트 단위에서 서버에서 실행될지, 클라이언트에서 실행될지를 결정할 수 있기 때문에 같은 페이지 내에서 SSR과 CSR이 공존할 수 있다.**
 
   
 
-이 글에서는 **Next.js에서 제공하는 모든 렌더링 방식(CSR, SSR, SSG, ISR, RSC)을 정리하고, 실무에서 어떻게 선택해야 하는지**를 정리한다.
+이 글에서는 **Next.js에서 제공하는 모든 렌더링 방식(CSR, SSR, SSG, ISR, RSC)을 정리하고, 실무에서 어떻게 선택해야 하는지**를 설명한다.
 
 ---
 
@@ -118,3 +118,131 @@ export default function Page({ data }) {
 **빌드 타임에 미리 HTML을 생성하여 저장하는 방식.**
 
 모든 요청은 미리 만들어진 HTML을 반환하므로 **최고의 속도를 제공한다.**
+
+```
+export async function getStaticProps() {
+  const res = await fetch("https://api.example.com/data");
+  const data = await res.json();
+
+  return { props: { data } };
+}
+
+export default function Page({ data }) {
+  return <div>{data.title}</div>;
+}
+```
+
+✅ **장점**
+
+• 정적 페이지라서 속도가 가장 빠름
+
+• SEO 최적화에 유리
+
+  
+
+❌ **단점**
+
+• 데이터를 업데이트하려면 페이지를 다시 빌드해야 함
+
+---
+
+**📌 4) ISR (Incremental Static Regeneration, 점진적 정적 재생성)**
+
+  
+
+**SSG와 SSR의 중간 형태.**
+
+빌드 시 정적 HTML을 생성하지만, 일정 주기마다 새로운 데이터를 가져와 HTML을 업데이트할 수 있다.
+
+```
+export async function getStaticProps() {
+  const res = await fetch("https://api.example.com/data");
+  const data = await res.json();
+
+  return { props: { data }, revalidate: 60 }; // 60초마다 데이터 갱신
+}
+
+export default function Page({ data }) {
+  return <div>{data.title}</div>;
+}
+```
+
+✅ **장점**
+
+• 정적 사이트의 속도를 유지하면서도 데이터 갱신 가능
+
+• 서버 부하가 적음
+
+  
+
+❌ **단점**
+
+• 실시간 데이터 반영이 어려울 수 있음
+
+---
+
+
+**📌 5) RSC (React Server Components, App Router 전용)**
+
+  
+
+**서버에서 실행되는 React 컴포넌트로, 클라이언트에서 불필요한 JavaScript를 최소화하는 방식.**
+
+Next.js 15에서는 **기본적으로 RSC를 사용하도록 설계**되었다.
+
+```
+export default async function Page() {
+  const res = await fetch("https://api.example.com/data");
+  const data = await res.json();
+
+  return <div>{data.title}</div>;
+}
+```
+
+✅ **장점**
+
+• 클라이언트에서 불필요한 JS 번들 제거 → 성능 최적화
+
+• API 요청을 서버에서 처리하여 클라이언트 부하 감소
+
+• SEO 최적화 가능 (서버에서 HTML 생성 후 전달)
+
+  
+
+❌ **단점**
+
+• Server Component에서는 useState, useEffect 사용 불가능
+
+• 클라이언트 상호작용이 필요한 경우 "use client" 선언 필요
+
+---
+
+**3. 기존 SSR과 RSC의 차이 – 같은 페이지에서 CSR과 SSR을 공존할 수 있음**
+
+  
+
+기존 SSR은 **페이지 단위에서 선언되었기 때문에 CSR과 함께 사용하기 어려웠지만**,
+
+RSC는 **컴포넌트 단위에서 서버에서 실행될지, 클라이언트에서 실행될지를 결정할 수 있기 때문에 같은 페이지 내에서 SSR과 CSR이 공존할 수 있다.**
+
+```
+export default async function Page() {
+  const res = await fetch("https://api.example.com/data");
+  const data = await res.json();
+
+  return (
+    <div>
+      <h1>{data.title}</h1>
+      <ClientComponent />
+    </div>
+  );
+}
+```
+
+```
+"use client";
+
+function ClientComponent() {
+  return <button>클라이언트에서 동작하는 버튼</button>;
+}
+```
