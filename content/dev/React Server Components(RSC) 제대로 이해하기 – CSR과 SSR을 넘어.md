@@ -155,6 +155,7 @@ export default async function Page() {
   return <div>{data.title}</div>;
 }
 ```
+
 ✅ **서버에서 데이터를 가져와 렌더링 → 클라이언트에서 API 요청 필요 없음**
 
 ---
@@ -164,3 +165,45 @@ export default async function Page() {
   
 
 useState, useEffect 같은 클라이언트 기능을 사용하려면 "use client"를 명시해야 한다.
+
+```
+"use client";
+
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return <button onClick={() => setCount(count + 1)}>Count: {count}</button>;
+}
+```
+
+✅ **클라이언트에서 실행해야 하는 경우 "use client"를 추가해야 한다.**
+
+---
+
+**4. 실무에서 React Server Components(RSC)를 활용하는 방법**
+
+  
+
+✅ **서버에서 데이터를 가져올 수 있는 경우 → RSC를 활용하여 서버에서 패칭**
+
+✅ **사용자 인터랙션이 필요한 경우 → Client Component에서 관리**
+
+✅ **동적인 데이터 업데이트가 필요한 경우 → React Query와 결합해서 사용**
+
+---
+
+**5. 결론 – React Server Components(RSC)를 선택해야 할까?**
+
+  
+
+✔ **새로운 Next.js 프로젝트를 시작한다면 RSC를 활용하는 것이 유리하다.**
+
+✔ **클라이언트 JS 번들을 줄이고 서버 렌더링을 최적화할 수 있다.**
+
+✔ **하지만 모든 컴포넌트가 RSC로 대체될 수는 없으며, Client Component와 함께 사용해야 한다.**
+
+  
+
+결국 **React Server Components는 기존 CSR/SSR 방식과 경쟁하는 것이 아니라, 이를 보완하는 방식으로 활용하는 것이 중요하다.**
