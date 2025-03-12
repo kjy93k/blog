@@ -28,7 +28,7 @@ v1이 나오기 전까지는 **메인 브랜치에서 작업**,
 
   
 
-📌 **App Router를 선택한 이유**
+### 📌 **App Router를 선택한 이유**
 
 ✅ **Next.js의 방향성이 Page Router → App Router 중심으로 가고 있음**
 
@@ -94,7 +94,7 @@ emotion을 못 쓰게 되면서 스타일링 라이브러리를 다시 고민해
 
   
 
-📌 **고려했던 스타일링 방식**
+### 📌 **고려했던 스타일링 방식**
 
 ✅ .module.scss → 익숙하지만, 유지보수가 어려울 것 같음
 
@@ -128,7 +128,7 @@ Compound와 Headless 컴포넌트 패턴은 익숙했지만,
 
   
 
-📌 **고민했던 점**
+### 📌 **고민했던 점**
 
 ✅ **use client를 써야 할까?**
 
@@ -158,7 +158,7 @@ Compound와 Headless 컴포넌트 패턴은 익숙했지만,
 
 ---
 
-## **📌 Compound Component 패턴을 처음 접한 게 아니라, 익숙했지만 App Router에서 혼란스러웠다**
+### **📌 Compound Component 패턴을 처음 접한 게 아니라, 익숙했지만 App Router에서 혼란스러웠다**
 
   
 
