@@ -21,7 +21,7 @@ Next.js 15에서는 **App Router가 도입되면서 fetch()가 기본적인 데�
 
 ---
 
-**1. Next.js 15에서 fetch()의 역할**
+## **1. Next.js 15에서 fetch()의 역할**
 
   
 
@@ -46,7 +46,7 @@ export default async function Page() {
 
 ---
 
-**2. Next.js fetch()의 캐싱 전략**
+## **2. Next.js fetch()의 캐싱 전략**
 
   
 
@@ -64,7 +64,7 @@ Next.js는 fetch()를 실행할 때 **GET 요청이면 기본적으로 캐싱을
 
 ---
 
-**📌 캐싱 전략 설정 방법**
+### **📌 캐싱 전략 설정 방법**
 
   
 
@@ -101,7 +101,7 @@ const res = await fetch("https://api.example.com/data", { next: { revalidate: 60
 
 ---
 
-**3. Request Deduplication – 중복 요청 제거**
+## **3. Request Deduplication – 중복 요청 제거**
 
   
 
@@ -196,7 +196,7 @@ export interface RequestOptions<T> extends RequestInit {
 
   
 
-export async function fetchClient<T = unknown, R = unknown>(
+export async function fetchServer<T = unknown, R = unknown>(
 
   method: HttpMethod,
 
@@ -352,9 +352,9 @@ export async function fetchClient<T = unknown, R = unknown>(
 **📌 기본적인 GET 요청 (쿼리 파라미터 포함)**
 ```
 const getUser = async () => {
-  const user = await fetchClient("GET", "/users/123", undefined, {
+  const user = await fetchServer("GET", "/users/123", undefined, {
     queryParams: { detailed: true },
-    retry: 3, // 최대 3번 재시도
+    retry: 2, // 최대 2번 재시도
   });
 
   console.log(user);
@@ -369,7 +369,7 @@ const userSchema = z.object({
 });
 
 const createUser = async () => {
-  const newUser = await fetchClient("POST", "/users", { name: "John Doe", email: "john@example.com" }, {
+  const newUser = await fetchServer("POST", "/users", { name: "John Doe", email: "john@example.com" }, {
     requestSchema: userSchema, // 요청 검증
     responseSchema: userSchema, // 응답 검증
   });
@@ -381,7 +381,7 @@ const createUser = async () => {
 **📌 인터셉터 활용 (로그 및 헤더 추가)**
 ```
 const fetchWithLogging = async () => {
-  const data = await fetchClient("GET", "/analytics", undefined, {
+  const data = await fetchServer("GET", "/analytics", undefined, {
     beforeRequest: (url, options) => {
       console.log("Request URL:", url);
       console.log("Headers:", options.headers);
