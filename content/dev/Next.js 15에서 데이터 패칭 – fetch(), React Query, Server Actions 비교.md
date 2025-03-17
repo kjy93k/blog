@@ -20,7 +20,7 @@ App Router에서는 **Server Component, Client Component, Server Actions 등의 
 
 즉, **App Router에서는 같은 데이터 요청이 여러 곳에서 실행되더라도 Next.js가 이를 감지하여 중복 요청을 방지한다.**
 
-이 기능을 **Request Deduplication(요청 중복 제거)** 이라고 하며,
+이 기능을 **Request Deduplication(요청 중복 제거)**이라고 하며,
 
 Next.js가 같은 API 요청을 한 번만 실행한 후, 모든 컴포넌트가 해당 데이터를 공유하도록 최적화한다.
 
@@ -38,7 +38,7 @@ Next.js가 같은 API 요청을 한 번만 실행한 후, 모든 컴포넌트가
 
 ---
 
-**1. Next.js 15에서 데이터 패칭 방식 총정리**
+## **1. Next.js 15에서 데이터 패칭 방식 총정리**
 
 | |**Server Component (서버에서 실행)**|**Client Component (클라이언트에서 실행)**|
 |---|---|---|
@@ -48,42 +48,16 @@ Next.js가 같은 API 요청을 한 번만 실행한 후, 모든 컴포넌트가
 
 ---
 
-**2. fetch()를 활용한 데이터 패칭 (Server Component에서 실행)**
+## **2. Next.js fetch()와 React Query 캐싱 비교**
 
-  
-
-Server Component에서는 **fetch()를 직접 호출할 수 있기 때문에,**
-
-**기존 SSR 방식보다 더 직관적으로 서버에서 데이터를 가져올 수 있다.**
-
-  
-
-**📌 Server Component에서 fetch() 사용 예제**
-
-```
-export default async function Page() {
-  const res = await fetch("https://api.example.com/data");
-  const data = await res.json();
-
-  return <div>{data.title}</div>;
-}
-```
-
-✅ **장점**
-
-• 클라이언트에서 API 요청을 하지 않아도 됨 (불필요한 네트워크 요청 감소)
-
-• SEO 최적화가 가능 (서버에서 데이터를 가져온 후 HTML을 렌더링)
-
-• **Request Deduplication이 적용되어 동일한 요청이 여러 곳에서 호출되더라도 한 번만 실행됨**
-
-  
-
-❌ **단점**
-
-• **사용자 상호작용으로 데이터를 변경해야 하는 경우에는 적절하지 않음**
-
-• **실시간 데이터 업데이트에는 적합하지 않음**
+| |**Next.js fetch() 캐싱**|**React Query 캐싱**|
+|---|---|---|
+|**캐싱 위치**|서버 (Server Component에서 캐싱)|클라이언트 (브라우저 메모리에서 캐싱)|
+|**캐싱 적용 대상**|GET 요청만 캐싱 가능|모든 요청 가능 (GET, POST 포함)|
+|**자동 요청 중복 제거**|✅ 가능 (Request Deduplication 적용)|✅ 가능 (React Query 캐싱 및 동기화)|
+|**데이터 갱신 방식**|cache: "no-store", revalidate 등으로 제어|staleTime, cacheTime, refetchOnWindowFocus 등으로 제어|
+|**SEO 최적화**|✅ 가능 (서버에서 데이터를 가져오므로 SEO에 유리)|❌ 어려움 (클라이언트에서 데이터를 가져오기 때문에 SEO가 불리함)|
+|**사용 사례**|초기 데이터를 서버에서 가져와야 할 때|사용자의 상호작용에 따라 데이터를 가져와야 할 때|
 
 ---
 
@@ -99,30 +73,6 @@ Next.js에서는 기본적으로 fetch()를 실행하면 **자동으로 데이�
 
 즉, 같은 API 요청이 여러 곳에서 실행되더라도, **Next.js가 한 번만 요청하고 결과를 공유**한다.
 
-  
-
-**📌 Request Deduplication 예제**
-```
-export async function getData() {
-  return fetch("https://api.example.com/data").then((res) => res.json());
-}
-
-export default async function Page() {
-  const data1 = await getData();
-  const data2 = await getData();
-
-  return (
-    <div>
-      <h1>{data1.title}</h1>
-      <p>{data2.content}</p>
-    </div>
-  );
-}
-```
-✅ **위 코드에서 getData()를 두 번 호출했지만, Next.js는 이를 감지하고 하나의 요청만 실행한다.**
-
-✅ **즉, 여러 컴포넌트에서 같은 데이터를 가져와도 Next.js는 중복 요청을 막아 네트워크 비용을 절감한다.**
-
 ---
 
 **📌 자동 캐싱이 적용되지 않는 경우**
@@ -134,6 +84,7 @@ export default async function Page() {
 • 데이터를 변경하는 요청(POST, PUT, DELETE)은 자동 캐싱되지 않는다.
 
 2. **라우트 핸들러에서 실행된 fetch()**
+
 ```
 // app/api/data/route.ts
 export async function GET() {
@@ -142,26 +93,84 @@ export async function GET() {
   return Response.json(data);
 }
 ```
+
 • **라우트 핸들러는 React 컴포넌트 트리에 속하지 않기 때문에 자동 캐싱이 되지 않는다.**
 
 • 따라서, API 엔드포인트에서 실행되는 fetch() 요청은 **Request Deduplication이 적용되지 않는다.**
 
 ---
 
-**4. 실무에서 데이터 패칭 방식 선택 기준**
+**4. axios를 다루지 않는 이유?**
 
-| |**적합한 경우**|
-|---|---|
-|**Server Component에서 fetch()**|초기 데이터를 서버에서 가져와야 할 때, SEO 최적화가 필요할 때|
-|**Client Component에서 React Query**|사용자 인터랙션에 따라 데이터를 가져와야 할 때, 실시간 데이터가 필요할 때|
-|**Server Actions 사용**|API 없이 서버에서 데이터를 직접 수정해야 할 때|
-**즉, Next.js 15에서는 하나의 방식만 선택하는 것이 아니라,**
+  
 
-**필요에 따라 fetch(), React Query, Server Actions를 조합해서 사용하는 것이 중요하다.**
+Next.js 15에서는 공식적으로 fetch()를 권장하며,
+
+이유는 **fetch()가 Next.js의 자동 캐싱 및 Request Deduplication 기능을 지원**하기 때문이다.
+
+  
+
+axios를 사용하면:
+
+• **fetch()의 cache 옵션(cache: "force-cache", next: { revalidate: X })을 활용할 수 없음**
+
+• **자동 캐싱 및 중복 요청 제거 기능이 작동하지 않음**
+
+  
+
+따라서 **서버에서 데이터를 패칭할 때는 fetch()를 사용하는 것이 더 유리하다.**
+
+하지만 **클라이언트에서 API 요청을 관리하고, 인터셉터를 활용하려면 axios가 유용할 수 있다.**
 
 ---
 
-**5. 결론 – Next.js 15에서 데이터 패칭은 어떻게 해야 할까?**
+**📌 fetch()의 커스텀 사용 – API 요청 헬퍼 함수 활용**
+
+  
+
+자동 캐싱과 중복 요청 제거 기능을 활용하면서도 **더 직관적인 API 요청을 만들고 싶다면,**
+
+**fetch()를 커스텀하여 사용하는 방법도 고려할 수 있다.**
+
+  
+
+**📌 커스텀 fetch() 헬퍼 함수**
+```
+const request = async (endpoint, options = {}) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${endpoint}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    ...options,
+  });
+
+  if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
+
+  return res.json();
+};
+```
+✅ **자동 캐싱 기능 유지 (fetch()의 기본 동작 활용)**
+
+✅ **API 요청을 한 곳에서 관리 가능**
+
+  
+
+혹은, return-fetch 같은 라이브러리를 활용하여 직접 fetch()의 기능을 확장할 수도 있다.
+
+
+---
+
+**5. 실무에서 데이터 패칭 방식 선택 기준**
+
+|                                    | **적합한 경우**                                 |
+| ---------------------------------- | ------------------------------------------ |
+| **Server Component에서 fetch()**     | 초기 데이터를 서버에서 가져와야 할 때, SEO 최적화가 필요할 때      |
+| **Client Component에서 React Query** | 사용자 인터랙션에 따라 데이터를 가져와야 할 때, 실시간 데이터가 필요할 때 |
+| **Server Actions 사용**              | API 없이 서버에서 데이터를 직접 수정해야 할 때               |
+
+---
+
+**6. 결론 – Next.js 15에서 데이터 패칭은 어떻게 해야 할까?**
 
   
 
@@ -173,6 +182,4 @@ export async function GET() {
 
 ✔ **Request Deduplication을 활용하면 동일한 fetch() 요청이 여러 곳에서 호출되더라도 한 번만 실행되어 최적화된다.**
 
-✔ **Next.js의 자동 캐싱은 GET 요청에서만 적용되며, React 컴포넌트 트리 내에서 실행된 fetch()만 캐싱된다.**
-
-✔ **라우트 핸들러에서 실행된 fetch() 요청은 캐싱되지 않으므로, API 핸들러에서는 별도로 최적화가 필요하다.**
+✔ **axios는 fetch()의 자동 캐싱 및 Request Deduplication 기능을 지원하지 않기 때문에, 서버에서는 fetch()를 사용하는 것이 더 적절하다.**
