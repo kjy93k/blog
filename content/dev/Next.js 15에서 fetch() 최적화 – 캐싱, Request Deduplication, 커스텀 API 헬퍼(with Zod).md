@@ -162,80 +162,186 @@ Next.js 15에서는 fetch()를 사용하는 것이 더 유리하다.
 
 자동 캐싱과 중복 요청 제거 기능을 활용하면서도 **더 직관적인 API 요청을 만들고 싶다면,**
 
-**fetch()를 커스텀하여 사용하는 방법이나,  return-fetch 같은 라이브러리를 활용하여**
+**fetch()를 커스텀하여 사용하거나,  return-fetch 같은 라이브러리를 활용하여**
 
-**직접 fetch()의 기능을 확장할 수도 있다.**
+**fetch()의 기능을 확장할 수도 있다.**
 
-
-```
-export async function request<T>(
-  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE",
-  endpoint: string,
-  body?: T,
-  options: RequestInit = {}
-): Promise<T> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${endpoint}`, {
-    method,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-    body: body ? JSON.stringify(body) : undefined,
-    ...options,
-  });
-
-  if (!res.ok) throw new Error(`Failed to fetch: ${res.status} - ${res.statusText}`);
-
-  return res.json();
-}
-```
-
-✅ **간단한 API 요청을 fetch()로 추상화하여 axios 없이도 사용 가능**
-
-✅ **불필요한 의존성 없이 Next.js의 기본 기능을 활용 가능**
-
----
-
-**📌 Zod를 활용한 API 요청/응답 검증 추가
 
 ```
 import { z } from "zod";
 
-export async function request<T, R>(
-  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE",
-  endpoint: string,
-  body?: T,
-  options: {
-    requestSchema?: z.Schema<T>;
-    responseSchema?: z.Schema<R>;
-    queryParams?: Record<string, string | number | boolean>;
-  } = {}
+  
+
+export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+
+  
+
+export interface RequestOptions<T> extends RequestInit {
+
+  queryParams?: Record<string, string | number | boolean>;
+
+  requestSchema?: z.Schema<T>;
+
+  responseSchema?: z.Schema<unknown>;
+
+  baseUrl?: string;
+
+  retry?: number; // 요청 재시도 횟수
+
+  beforeRequest?: (url: string, options: RequestInit) => void;
+
+  afterResponse?: (response: Response) => void;
+
+}
+
+  
+
+export async function fetchClient<T = unknown, R = unknown>(
+
+  method: HttpMethod,
+
+  endpoint: string,
+
+  body?: T,
+
+  options: RequestOptions<T> = {}
+
 ): Promise<R> {
-  const { requestSchema, responseSchema, queryParams } = options;
 
-  // 요청 데이터 검증
-  const validatedBody = requestSchema ? requestSchema.parse(body) : body;
+  const {
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${endpoint}`, {
-    method,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: validatedBody ? JSON.stringify(validatedBody) : undefined,
-  });
+    queryParams,
 
-  if (!res.ok) throw new Error(`Failed to fetch: ${res.status} - ${res.statusText}`);
+    requestSchema,
 
-  const data = await res.json();
-  return responseSchema ? responseSchema.parse(data) : (data as R);
+    responseSchema,
+
+    baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "",
+
+    retry = 3,
+
+    beforeRequest,
+
+    afterResponse,
+
+    ...fetchOptions
+
+  } = options;
+
+  
+
+  try {
+
+    // 요청 데이터 검증 (Zod 적용)
+
+    const validatedBody = requestSchema ? requestSchema.parse(body) : body;
+
+  
+
+    // Query String 처리
+
+    const queryString = queryParams
+
+      ? "?" +
+
+        Object.entries(queryParams)
+
+          .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+
+          .join("&")
+
+      : "";
+
+  
+
+    // 요청 URL
+
+    const url = `${baseUrl}${endpoint}${queryString}`;
+
+  
+
+    // 요청 전 인터셉터 실행
+
+    if (beforeRequest) beforeRequest(url, fetchOptions);
+
+  
+
+    let attempts = 0;
+
+    let response: Response | null = null;
+
+  
+
+    while (attempts < retry) {
+
+      attempts += 1;
+
+      response = await fetch(url, {
+
+        method,
+
+        headers: {
+
+          "Content-Type": "application/json",
+
+          ...fetchOptions.headers,
+
+        },
+
+        body: validatedBody ? JSON.stringify(validatedBody) : undefined,
+
+        credentials: "include",
+
+        ...fetchOptions,
+
+      });
+
+  
+
+      if (response.ok) break; // 정상 응답이면 재시도 중단
+
+  
+
+      if (attempts < retry) {
+
+        console.warn(`Retrying request... (${attempts}/${retry})`);
+
+      } else {
+
+        throw new Error(`Request failed after ${retry} attempts: ${response.statusText}`);
+
+      }
+
+    }
+
+  
+
+    if (!response) throw new Error("No response received from server.");
+
+  
+
+    // 응답 후 인터셉터 실행
+
+    if (afterResponse) afterResponse(response);
+
+  
+
+    // 응답 데이터 파싱 및 검증 (Zod 적용)
+
+    const data = await response.json();
+
+    return responseSchema ? responseSchema.parse(data) : (data as R);
+
+  } catch (error) {
+
+    console.error("API Request failed:", error);
+
+    throw error;
+
+  }
+
 }
 ```
-
-✅ **API 요청 데이터를 검증하여 불필요한 서버 요청 방지**
-
-✅ **API 응답이 예상한 데이터와 다를 경우 런타임에서 오류 감지 가능**
-
----
 
 **📌 Zod를 사용하는 것이 좋은 경우**
 
