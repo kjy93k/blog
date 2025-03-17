@@ -186,7 +186,7 @@ export interface RequestOptions<T> extends RequestInit {
 
   baseUrl?: string;
 
-  retry?: number; // 요청 재시도 횟수
+  retry?: number;
 
   beforeRequest?: (url: string, options: RequestInit) => void;
 
@@ -343,21 +343,58 @@ export async function fetchClient<T = unknown, R = unknown>(
 }
 ```
 
-**📌 Zod를 사용하는 것이 좋은 경우**
 
-✅ **API의 응답 구조가 자주 변경될 가능성이 있을 때**
-
-✅ **사용자가 입력한 데이터를 서버에 보내기 전에 검증해야 할 때**
-
-✅ **API 요청/응답 데이터를 런타임에서 안정적으로 다루고 싶을 때**
+---
+**사용 예제**
 
   
 
-**📌 Zod 없이 진행해도 되는 경우**
+**📌 기본적인 GET 요청 (쿼리 파라미터 포함)**
+```
+const getUser = async () => {
+  const user = await fetchClient("GET", "/users/123", undefined, {
+    queryParams: { detailed: true },
+    retry: 3, // 최대 3번 재시도
+  });
 
-❌ **API 스키마가 확정되어 있고, 변경 가능성이 거의 없을 때**
+  console.log(user);
+};
+```
 
-❌ **네트워크 요청을 최소화해야 하고, 성능 최적화가 중요한 경우 (런타임 검사가 필요 없을 때)**
+**📌 POST 요청 (요청 및 응답 검증 포함)**
+```
+const userSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+});
+
+const createUser = async () => {
+  const newUser = await fetchClient("POST", "/users", { name: "John Doe", email: "john@example.com" }, {
+    requestSchema: userSchema, // 요청 검증
+    responseSchema: userSchema, // 응답 검증
+  });
+
+  console.log(newUser);
+};
+```
+
+**📌 인터셉터 활용 (로그 및 헤더 추가)**
+```
+const fetchWithLogging = async () => {
+  const data = await fetchClient("GET", "/analytics", undefined, {
+    beforeRequest: (url, options) => {
+      console.log("Request URL:", url);
+      console.log("Headers:", options.headers);
+    },
+    afterResponse: (response) => {
+      console.log("Response Status:", response.status);
+    },
+  });
+
+  console.log(data);
+};
+```
+
 
 ---
 
