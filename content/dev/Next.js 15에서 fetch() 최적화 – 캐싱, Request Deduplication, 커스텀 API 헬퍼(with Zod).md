@@ -200,10 +200,10 @@ export async function fetchServer<T = unknown, R = unknown>(
     requestSchema,
     responseSchema,
     baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "",
-    retry = 1,
+    retry = 3,
     beforeRequest,
     afterResponse,
-    cacheStrategy = "force-cache", // 기본값 설정
+    cacheStrategy = "force-cache", 
     revalidate,
     ...fetchOptions
   } = options;
@@ -245,6 +245,11 @@ export async function fetchServer<T = unknown, R = unknown>(
       });
 
       if (response.ok) break;
+
+      // 4xx 오류는 재시도하지 않음
+      if (response.status >= 400 && response.status < 500) {
+        throw new Error(`Client error: ${response.status} - ${response.statusText}`);
+      }
 
       if (attempts < retry) {
         console.warn(`Retrying request... (${attempts}/${retry})`);
