@@ -303,6 +303,13 @@ const createUser = async () => {
 };
 ```
 
+**📌 특정 주기로 데이터 갱신 (ISR처럼 동작)**
+```
+const revalidatedData = await fetchServer("GET", "/posts", {
+  revalidate: 60, // 60초마다 새로운 데이터로 갱신
+});
+```
+
 **📌 인터셉터 활용 (로그 및 헤더 추가)**
 ```
 const fetchWithLogging = async () => {
@@ -320,7 +327,7 @@ const fetchWithLogging = async () => {
 };
 ```
 
-**📌  **특정 주기로 데이터 갱신 (ISR처럼 동작)**
+
 
 ---
 
