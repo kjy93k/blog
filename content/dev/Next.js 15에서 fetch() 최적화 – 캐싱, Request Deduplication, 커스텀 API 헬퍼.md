@@ -16,6 +16,7 @@ Next.js 15에서는 **App Router가 도입되면서 fetch()가 기본적인 데�
 
 • **axios 대신 fetch()를 활용한 커스텀 API 헬퍼 만들기**
 
+• **Zod를 활용한 TypeScript 기반 데이터 검증 방법**
   
 
 를 다룬다.
