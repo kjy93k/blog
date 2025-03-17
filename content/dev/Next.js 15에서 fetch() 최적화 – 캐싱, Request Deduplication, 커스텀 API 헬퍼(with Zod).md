@@ -133,7 +133,7 @@ export default async function Page() {
 
 ---
 
-**4. axios를 사용하지 않는 이유?**
+## **4. axios를 사용하지 않는 이유?**
 
   
 
@@ -158,7 +158,7 @@ Next.js 15에서는 fetch()를 사용하는 것이 더 유리하다.
 
 ---
 
-**5. axios 대신 fetch()로 커스텀 API 헬퍼 만들기**
+## **5. axios 대신 fetch()로 커스텀 API 헬퍼 만들기**
 
 자동 캐싱과 중복 요청 제거 기능을 활용하면서도 **더 직관적인 API 요청을 만들고 싶다면,**
 
@@ -345,7 +345,7 @@ export async function fetchServer<T = unknown, R = unknown>(
 
 
 ---
-**사용 예제**
+### **사용 예제**
 
   
 
@@ -398,7 +398,7 @@ const fetchWithLogging = async () => {
 
 ---
 
-**6. 결론 – Next.js 15에서 fetch()를 어떻게 최적화할까?**
+## **6. 결론 – Next.js 15에서 fetch()를 어떻게 최적화할까?**
 
   
 
