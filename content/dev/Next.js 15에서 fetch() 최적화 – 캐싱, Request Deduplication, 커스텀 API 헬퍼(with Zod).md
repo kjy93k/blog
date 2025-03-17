@@ -203,7 +203,7 @@ export async function fetchServer<T = unknown, R = unknown>(
     retry = 1,
     beforeRequest,
     afterResponse,
-    cacheStrategy,
+    cacheStrategy = "force-cache", // 기본값 설정
     revalidate,
     ...fetchOptions
   } = options;
@@ -237,10 +237,10 @@ export async function fetchServer<T = unknown, R = unknown>(
           "Content-Type": "application/json",
           ...fetchOptions.headers,
         },
-        body: validatedBody ? JSON.stringify(validatedBody) : undefined,
+        body: body ? JSON.stringify(body) : undefined,
         credentials: "include",
-        cache: cacheStrategy, // 캐싱 전략 적용
-        next: revalidate ? { revalidate } : undefined, // 특정 주기로 데이터 갱신
+        cache: cacheStrategy,
+        next: revalidate ? { revalidate } : undefined,
         ...fetchOptions,
       });
 
@@ -258,12 +258,16 @@ export async function fetchServer<T = unknown, R = unknown>(
     // 응답 후 인터셉터 실행
     if (afterResponse) afterResponse(response);
 
-    // 응답 데이터 파싱 및 검증 (Zod 적용)
-    const data = await response.json();
+    // 응답 데이터 JSON 또는 TEXT로 처리
+    const contentType = response.headers.get("content-type");
+    const data = contentType && contentType.includes("application/json")
+      ? await response.json()
+      : await response.text();
+
     return responseSchema ? responseSchema.parse(data) : (data as R);
   } catch (error) {
     console.error("API Request failed:", error);
-    throw error;
+    throw new Error("Invalid response from server.");
   }
 }
 ```
