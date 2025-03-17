@@ -170,176 +170,101 @@ Next.js 15에서는 fetch()를 사용하는 것이 더 유리하다.
 ```
 import { z } from "zod";
 
-  
-
 export type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
-  
-
 export interface RequestOptions<T> extends RequestInit {
-
-  queryParams?: Record<string, string | number | boolean>;
-
-  requestSchema?: z.Schema<T>;
-
-  responseSchema?: z.Schema<unknown>;
-
-  baseUrl?: string;
-
-  retry?: number;
-
-  beforeRequest?: (url: string, options: RequestInit) => void;
-
-  afterResponse?: (response: Response) => void;
-
+  queryParams?: Record<string, string | number | boolean>;
+  requestSchema?: z.Schema<T>;
+  responseSchema?: z.Schema<unknown>;
+  baseUrl?: string;
+  retry?: number; // 요청 재시도 횟수
+  beforeRequest?: (url: string, options: RequestInit) => void;
+  afterResponse?: (response: Response) => void;
+  cacheStrategy?: "force-cache" | "no-store";
+  revalidate?: number; // ISR처럼 특정 주기로 데이터 갱신
 }
 
-  
-
 export async function fetchServer<T = unknown, R = unknown>(
-
-  method: HttpMethod,
-
-  endpoint: string,
-
-  body?: T,
-
-  options: RequestOptions<T> = {}
-
+  method: HttpMethod,
+  endpoint: string,
+  bodyOrOptions?: T | RequestOptions<T>,
+  maybeOptions?: RequestOptions<T>
 ): Promise<R> {
-
-  const {
-
-    queryParams,
-
-    requestSchema,
-
-    responseSchema,
-
-    baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "",
-
-    retry = 3,
-
-    beforeRequest,
-
-    afterResponse,
-
-    ...fetchOptions
-
-  } = options;
-
-  
-
-  try {
-
-    // 요청 데이터 검증 (Zod 적용)
-
-    const validatedBody = requestSchema ? requestSchema.parse(body) : body;
-
-  
-
-    // Query String 처리
-
-    const queryString = queryParams
-
-      ? "?" +
-
-        Object.entries(queryParams)
-
-          .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
-
-          .join("&")
-
-      : "";
-
-  
-
-    // 요청 URL
-
-    const url = `${baseUrl}${endpoint}${queryString}`;
-
-  
-
-    // 요청 전 인터셉터 실행
-
-    if (beforeRequest) beforeRequest(url, fetchOptions);
-
-  
-
-    let attempts = 0;
-
-    let response: Response | null = null;
-
-  
-
-    while (attempts < retry) {
-
-      attempts += 1;
-
-      response = await fetch(url, {
-
-        method,
-
-        headers: {
-
-          "Content-Type": "application/json",
-
-          ...fetchOptions.headers,
-
-        },
-
-        body: validatedBody ? JSON.stringify(validatedBody) : undefined,
-
-        credentials: "include",
-
-        ...fetchOptions,
-
-      });
-
-  
-
-      if (response.ok) break; // 정상 응답이면 재시도 중단
-
-  
-
-      if (attempts < retry) {
-
-        console.warn(`Retrying request... (${attempts}/${retry})`);
-
-      } else {
-
-        throw new Error(`Request failed after ${retry} attempts: ${response.statusText}`);
-
-      }
-
-    }
-
-  
-
-    if (!response) throw new Error("No response received from server.");
-
-  
-
-    // 응답 후 인터셉터 실행
-
-    if (afterResponse) afterResponse(response);
-
-  
-
-    // 응답 데이터 파싱 및 검증 (Zod 적용)
-
-    const data = await response.json();
-
-    return responseSchema ? responseSchema.parse(data) : (data as R);
-
-  } catch (error) {
-
-    console.error("API Request failed:", error);
-
-    throw error;
-
-  }
-
+  // `bodyOrOptions`가 객체이고 `cacheStrategy` 등의 속성을 포함하면 `options`로 간주
+  const isBody = method !== "GET" && typeof bodyOrOptions === "object" && !("cacheStrategy" in bodyOrOptions);
+  const body = isBody ? (bodyOrOptions as T) : undefined;
+  const options = isBody ? maybeOptions : (bodyOrOptions as RequestOptions<T>) || {};
+
+  const {
+    queryParams,
+    requestSchema,
+    responseSchema,
+    baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "",
+    retry = 1,
+    beforeRequest,
+    afterResponse,
+    cacheStrategy,
+    revalidate,
+    ...fetchOptions
+  } = options;
+
+  try {
+    // 요청 데이터 검증 (Zod 적용)
+    const validatedBody = requestSchema ? requestSchema.parse(body) : body;
+
+    // Query String 처리
+    const queryString = queryParams
+      ? "?" +
+        Object.entries(queryParams)
+          .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+          .join("&")
+      : "";
+
+    // 요청 URL
+    const url = `${baseUrl}${endpoint}${queryString}`;
+
+    // 요청 전 인터셉터 실행
+    if (beforeRequest) beforeRequest(url, fetchOptions);
+
+    let attempts = 0;
+    let response: Response | null = null;
+
+    while (attempts < retry) {
+      attempts += 1;
+      response = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          ...fetchOptions.headers,
+        },
+        body: validatedBody ? JSON.stringify(validatedBody) : undefined,
+        credentials: "include",
+        cache: cacheStrategy, // 캐싱 전략 적용
+        next: revalidate ? { revalidate } : undefined, // 특정 주기로 데이터 갱신
+        ...fetchOptions,
+      });
+
+      if (response.ok) break;
+
+      if (attempts < retry) {
+        console.warn(`Retrying request... (${attempts}/${retry})`);
+      } else {
+        throw new Error(`Request failed after ${retry} attempts: ${response.statusText}`);
+      }
+    }
+
+    if (!response) throw new Error("No response received from server.");
+
+    // 응답 후 인터셉터 실행
+    if (afterResponse) afterResponse(response);
+
+    // 응답 데이터 파싱 및 검증 (Zod 적용)
+    const data = await response.json();
+    return responseSchema ? responseSchema.parse(data) : (data as R);
+  } catch (error) {
+    console.error("API Request failed:", error);
+    throw error;
+  }
 }
 ```
 
@@ -352,7 +277,7 @@ export async function fetchServer<T = unknown, R = unknown>(
 **📌 기본적인 GET 요청 (쿼리 파라미터 포함)**
 ```
 const getUser = async () => {
-  const user = await fetchServer("GET", "/users/123", undefined, {
+  const user = await fetchServer("GET", "/users/123", {
     queryParams: { detailed: true },
     retry: 2, // 최대 2번 재시도
   });
@@ -381,7 +306,7 @@ const createUser = async () => {
 **📌 인터셉터 활용 (로그 및 헤더 추가)**
 ```
 const fetchWithLogging = async () => {
-  const data = await fetchServer("GET", "/analytics", undefined, {
+  const data = await fetchServer("GET", "/analytics", {
     beforeRequest: (url, options) => {
       console.log("Request URL:", url);
       console.log("Headers:", options.headers);
@@ -395,6 +320,7 @@ const fetchWithLogging = async () => {
 };
 ```
 
+**📌  **특정 주기로 데이터 갱신 (ISR처럼 동작)**
 
 ---
 
