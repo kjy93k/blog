@@ -158,34 +158,100 @@ Next.js 15에서는 fetch()를 사용하는 것이 더 유리하다.
 
 ---
 
-**5. axios 대신 fetch()로 커스텀 API 헬퍼 만들기**
+**5. **axios 대신 fetch()로 커스텀 API 헬퍼 만들기**
 
-  
+자동 캐싱과 중복 요청 제거 기능을 활용하면서도 **더 직관적인 API 요청을 만들고 싶다면,**
 
-Next.js 15에서는 fetch()의 자동 캐싱을 유지하면서 **axios처럼 사용할 수 있는 API 헬퍼를 만들 수도 있다.**
+**fetch()를 커스텀하여 사용하는 방법이나,  return-fetch 같은 라이브러리를 활용하여**
+
+**직접 fetch()의 기능을 확장할 수도 있다.**
+
 
 ```
-const request = async (endpoint, options = {}) => {
+export async function request<T>(
+  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE",
+  endpoint: string,
+  body?: T,
+  options: RequestInit = {}
+): Promise<T> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${endpoint}`, {
+    method,
     headers: {
       "Content-Type": "application/json",
+      ...options.headers,
     },
+    body: body ? JSON.stringify(body) : undefined,
     ...options,
   });
 
-  if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
+  if (!res.ok) throw new Error(`Failed to fetch: ${res.status} - ${res.statusText}`);
 
   return res.json();
-};
+}
 ```
 
-✅ **자동 캐싱 기능 유지 (fetch()의 기본 동작 활용)**
+✅ **간단한 API 요청을 fetch()로 추상화하여 axios 없이도 사용 가능**
 
-✅ **API 요청을 한 곳에서 관리 가능**
+✅ **불필요한 의존성 없이 Next.js의 기본 기능을 활용 가능**
+
+---
+
+**📌 Zod를 활용한 API 요청/응답 검증 추가
+
+```
+import { z } from "zod";
+
+export async function request<T, R>(
+  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE",
+  endpoint: string,
+  body?: T,
+  options: {
+    requestSchema?: z.Schema<T>;
+    responseSchema?: z.Schema<R>;
+    queryParams?: Record<string, string | number | boolean>;
+  } = {}
+): Promise<R> {
+  const { requestSchema, responseSchema, queryParams } = options;
+
+  // 요청 데이터 검증
+  const validatedBody = requestSchema ? requestSchema.parse(body) : body;
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${endpoint}`, {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: validatedBody ? JSON.stringify(validatedBody) : undefined,
+  });
+
+  if (!res.ok) throw new Error(`Failed to fetch: ${res.status} - ${res.statusText}`);
+
+  const data = await res.json();
+  return responseSchema ? responseSchema.parse(data) : (data as R);
+}
+```
+
+✅ **API 요청 데이터를 검증하여 불필요한 서버 요청 방지**
+
+✅ **API 응답이 예상한 데이터와 다를 경우 런타임에서 오류 감지 가능**
+
+---
+
+**📌 Zod를 사용하는 것이 좋은 경우**
+
+✅ **API의 응답 구조가 자주 변경될 가능성이 있을 때**
+
+✅ **사용자가 입력한 데이터를 서버에 보내기 전에 검증해야 할 때**
+
+✅ **API 요청/응답 데이터를 런타임에서 안정적으로 다루고 싶을 때**
 
   
 
-혹은, **return-fetch** 같은 라이브러리를 활용하여 직접 fetch()의 기능을 확장할 수도 있다.
+**📌 Zod 없이 진행해도 되는 경우**
+
+❌ **API 스키마가 확정되어 있고, 변경 가능성이 거의 없을 때**
+
+❌ **네트워크 요청을 최소화해야 하고, 성능 최적화가 중요한 경우 (런타임 검사가 필요 없을 때)**
 
 ---
 
