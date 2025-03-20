@@ -130,13 +130,13 @@ Page Router에서는 **초기 페이지를 SSG로 미리 렌더링한 후, 클�
 ```
 import useSWR from "swr";
 
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
 export async function getStaticProps() {
-  const staticData = await fetch("https://api.example.com/static-data").then((res) => res.json());
+  const staticData = await fetcher("https://api.example.com/static-data");
 
   return { props: { staticData } };
 }
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Page({ staticData }) {
   const { data: dynamicData } = useSWR("/api/dynamic-data", fetcher, { refreshInterval: 5000 });
