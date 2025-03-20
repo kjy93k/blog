@@ -62,7 +62,7 @@ Next.js 15에서는 **App Router를 중심으로 한 기능들이 강화**되었
 
 ---
 
-**3. React Server Components(RSC) – CSR, SSR을 넘어서는 새로운 렌더링 방식**
+## **3. React Server Components(RSC) – CSR, SSR을 넘어서는 새로운 렌더링 방식**
 
   
 
@@ -103,7 +103,7 @@ export default function Counter() {
 
 ---
 
-**4. Next.js 15에서 데이터 패칭 – fetch(), React Query, Server Actions 비교**
+## **4. Next.js 15에서 데이터 패칭 – fetch(), React Query, Server Actions 비교**
 
   
 
@@ -164,7 +164,7 @@ export default function Posts() {
 
 ---
 
-**🚀 결론 – Next.js 15에서 달라진 핵심 개념들**
+## **🚀 결론 – Next.js 15에서 달라진 핵심 개념들**
   
 
 ✔ **Page Router → App Router 중심으로 전환**
@@ -177,7 +177,7 @@ export default function Posts() {
 
 ---
 
-**✅ 최종 정리 – “Next.js 15, 어떻게 사용해야 할까?”**
+## **✅ 최종 정리 – “Next.js 15, 어떻게 사용해야 할까?”**
 
   
 
