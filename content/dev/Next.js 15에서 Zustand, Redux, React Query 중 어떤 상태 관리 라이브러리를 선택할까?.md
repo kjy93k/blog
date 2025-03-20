@@ -10,7 +10,7 @@ Next.js 15에서는 **App Router, React Server Components(RSC), Server Actions**
 
 ---
 
-**1. 상태 관리 라이브러리의 역할과 필요성**
+## **1. 상태 관리 라이브러리의 역할과 필요성**
 
   
 
@@ -34,7 +34,7 @@ Next.js 15에서는 **React Server Components(RSC)와 Server Actions**가 도입
 
 ---
 
-**2. Zustand, Redux, React Query의 차이점**
+## **2. Zustand, Redux, React Query의 차이점**
 
 | |**Zustand**|**Redux**|**React Query**|
 |---|---|---|---|
@@ -48,11 +48,11 @@ Next.js 15에서는 **React Server Components(RSC)와 Server Actions**가 도입
 
 ---
 
-**3. Next.js 15에서 각 라이브러리를 어떻게 활용할 수 있을까?**
+## **3. Next.js 15에서 각 라이브러리를 어떻게 활용할 수 있을까?**
 
   
 
-**📌 Zustand – 간단하고 가벼운 상태 관리**
+### **📌 Zustand – 간단하고 가벼운 상태 관리**
 
   
 
@@ -89,7 +89,7 @@ export default function Counter() {
 
 ---
 
-**📌 Redux – 대규모 프로젝트에서 복잡한 상태 관리**
+### **📌 Redux – 대규모 프로젝트에서 복잡한 상태 관리**
 
   
 
@@ -144,7 +144,7 @@ export default function App() {
 
 ---
 
-**📌 React Query – 서버 데이터 패칭 및 캐싱 (CSR 전용)**
+### **📌 React Query – 서버 데이터 패칭 및 캐싱 (CSR 전용)**
 
   
 
@@ -185,7 +185,7 @@ export default function Posts() {
 
 ---
 
-**4. Next.js 15에서 상태 관리 라이브러리 선택 기준**
+## **4. Next.js 15에서 상태 관리 라이브러리 선택 기준**
 
 |**사용 사례**|**Zustand**|**Redux**|**React Query**|
 |---|---|---|---|
@@ -193,4 +193,8 @@ export default function Posts() {
 |**대규모 프로젝트의 글로벌 상태 관리**|❌ 너무 단순함|✅ 적합|❌ 적합하지 않음|
 |**서버 데이터 패칭 및 캐싱**|❌ 적합하지 않음|❌ 적합하지 않음|✅ 적합 (CSR에서만 가능)|
 |**RSC에서 사용 가능 여부**|✅ 가능|✅ 가능|❌ 불가능 (클라이언트 전용)|
+✅ **“UI 상태 관리(모달, 필터, 토글 등)”** → Zustand 사용
 
+✅ **“복잡한 글로벌 상태 관리가 필요하다”** → Redux 사용
+
+✅ **“서버 데이터를 가져오고 캐싱해야 한다 (CSR에서만 가능)”** → React Query 사용
