@@ -43,13 +43,10 @@ HeyB Blog는 배우고 경험한 것들, 그리고 문득 떠오른 생각들을
 
 
 
-dev
-<details>
-<summary>HeyB 블로그 세팅기</summary>
+👩🏻‍💻 **dev**
+
 [[HeyB 블로그 세팅기 ✨]]
-</details>
-<details>
-<summary>Next.js</summary>
+
 [[Next.js 15 A to Z – 새로운 기능과 실무 적용 방법 🚀]]
 
 [[Next.js App Router vs Page Router – 실무에서 어떤 선택이 적합할까?]]
@@ -65,9 +62,8 @@ dev
 [[Next.js 15에서 Server Actions 제대로 이해하기 – API 요청을 대체할 수 있을까?]]
 
 [[Partial Prerendering (PPR) – SSG와 SSR의 경계를 허물다]]
-</details>
 
-idea
+💡 **idea**
 
 [[Chapter 1. 취미가 없는 사람의 고민]]
 
@@ -76,7 +72,7 @@ idea
 [[Chapter 3. 개발 시작 – 컴포넌트 설계, 설정, 그리고 끝없는 고민들]]
 
 
-life
+🏡 **life**
 
 [[전세사기부터 회생까지 (1) - 내가 전세사기라니?!]]
 
