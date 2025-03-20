@@ -1,7 +1,6 @@
 ---
 title: HeyB Blog | 나의 생각 저장소
-tags: 
-created: 2025-03-10T21:00:00
+tags:
 ---
 HeyB Blog는 배우고 경험한 것들, 그리고 문득 떠오른 생각들을 기록하는 곳입니다.
 
