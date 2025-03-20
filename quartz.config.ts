@@ -59,10 +59,6 @@ const config: QuartzConfig = {
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
         priority: ["frontmatter", "filesystem"],
-        fallback: {
-          created: new Date().toISOString(),
-          modified: new Date().toISOString(),
-        },
       }),
       Plugin.SyntaxHighlighting({
         theme: {
