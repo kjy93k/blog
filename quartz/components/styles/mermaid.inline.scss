@@ -139,7 +139,7 @@ pre {
         color: var(--dark);
         border-radius: 4px;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 14px;
         font-family: var(--bodyFont);
         transition: all 0.2s ease;
 
@@ -155,7 +155,7 @@ pre {
         &:nth-child(2) {
           width: auto;
           padding: 0 12px;
-          font-size: 14px;
+          font-size: 12px;
         }
       }
     }
