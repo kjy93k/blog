@@ -1,3 +1,14 @@
+---
+tags:
+  - NextJS15
+  - ServerActions
+  - APIless
+  - ReactServerComponents
+  - ServerSideRendering
+  - 웹개발
+  - React
+  - Frontend
+---
 Next.js 15에서는 **Server Actions**가 추가되면서 기존의 API 요청 방식(fetch, API Routes, React Query 등)과는 다른 **새로운 서버 데이터 조작 방식**이 가능해졌다.
 
   

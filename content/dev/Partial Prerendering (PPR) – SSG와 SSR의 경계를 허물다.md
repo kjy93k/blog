@@ -1,3 +1,15 @@
+---
+tags:
+  - NextJS15
+  - PartialPrerendering
+  - PPR
+  - SSG
+  - SSR
+  - 프리렌더링
+  - React
+  - 웹개발
+  - Frontend
+---
 Next.js 15에서는 **Partial Prerendering (PPR)** 이라는 새로운 렌더링 방식이 도입되었다.
 
 PPR은 기존의 **Static Site Generation (SSG)** 과 **Server-Side Rendering (SSR)** 의 장점을 결합하여,

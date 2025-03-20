@@ -5,6 +5,7 @@ tags:
   - Quartz
   - DNS
   - Blog
+  - Frontend
 aliases:
   - HeyB 블로그 세팅기 ✨✨
 ---

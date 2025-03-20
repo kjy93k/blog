@@ -9,6 +9,7 @@ tags:
   - CSR
   - SSR
   - 웹개발
+  - Frontend
 ---
 Next.js 15에서는 **App Router의 도입으로 데이터 패칭 방식이 여러 가지로 나뉘게 되었다.**
 

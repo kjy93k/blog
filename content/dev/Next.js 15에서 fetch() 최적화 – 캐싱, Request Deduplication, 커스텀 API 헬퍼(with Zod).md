@@ -1,3 +1,14 @@
+---
+tags:
+  - NextJS15
+  - fetch
+  - APIOptimization
+  - RequestDeduplication
+  - Zod
+  - 웹개발
+  - 캐싱
+  - Frontend
+---
 Next.js 15에서는 **App Router가 도입되면서 fetch()가 기본적인 데이터 패칭 방식**으로 자리 잡았다.
 
 특히 **자동 캐싱, Request Deduplication, Server Component에서의 직접 호출 등 강력한 기능**이 추가되면서,
