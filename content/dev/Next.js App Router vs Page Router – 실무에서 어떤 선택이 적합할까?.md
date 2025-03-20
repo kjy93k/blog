@@ -1,3 +1,15 @@
+---
+tags:
+  - NextJS15
+  - AppRouter
+  - PageRouter
+  - CSR
+  - SSR
+  - SSG
+  - React
+  - 웹개발
+  - Frontend
+---
 Next.js 13부터 **App Router가 도입**되었고,
 
 이제 Next.js 15에서는 App Router가 **기본 방식으로 권장**되고 있다.

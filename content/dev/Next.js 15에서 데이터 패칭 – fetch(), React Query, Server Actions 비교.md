@@ -1,3 +1,15 @@
+---
+tags:
+  - NextJS15
+  - DataFetching
+  - fetch
+  - ReactQuery
+  - ServerActions
+  - AppRouter
+  - CSR
+  - SSR
+  - 웹개발
+---
 Next.js 15에서는 **App Router의 도입으로 데이터 패칭 방식이 여러 가지로 나뉘게 되었다.**
 
 기존 Page Router에서는 getServerSideProps, getStaticProps, getInitialProps를 사용했지만,

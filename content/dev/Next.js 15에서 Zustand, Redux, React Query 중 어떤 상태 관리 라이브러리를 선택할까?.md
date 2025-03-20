@@ -1,3 +1,14 @@
+---
+tags:
+  - NextJS15
+  - ServerActions
+  - APIless
+  - ReactServerComponents
+  - ServerSideRendering
+  - 웹개발
+  - React
+  - Frontend
+---
 Next.js 15에서는 **App Router, React Server Components(RSC), Server Actions** 등의 변화로 인해
 
 기존의 **클라이언트 상태 관리 라이브러리(Zustand, Redux, React Query)**를 어떻게 선택해야 할지 고민이 많아졌다.

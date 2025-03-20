@@ -1,3 +1,14 @@
+---
+tags:
+  - NextJS15
+  - ReactServerComponents
+  - RSC
+  - SSR
+  - CSR
+  - React
+  - ServerSideRendering
+  - Frontend
+---
 Next.js 15에서는 **React Server Components(RSC)**가 기본적으로 사용되며,
 
 이는 기존의 **CSR(Client-Side Rendering), SSR(Server-Side Rendering), SSG(Static Site Generation), ISR(Incremental Static Regeneration)** 방식과 함께 사용할 수 있다.
