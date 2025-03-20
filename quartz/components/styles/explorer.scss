@@ -252,7 +252,7 @@ li:has(> .folder-outer:not(.open)) > .folder-container > svg {
       width: 100%;
       transition: transform 300ms ease-in-out;
       overflow: hidden;
-      padding: $topSpacing 2rem 2rem;
+      padding: $topSpacing 1.5rem 1.5rem;
       height: 100dvh;
       max-height: 100dvh;
       margin-top: 0;
