@@ -122,21 +122,63 @@ export default function FocusInput() {
 
 useRef는 .current를 통해 DOM에 직접 접근할 수 있다.
 
-리렌더링 없이도 값을 저장하고 유지할 수 있어서, **상태처럼 쓰이지만 렌더링을 유발하지는 않는다.**
+또한 컴포넌트가 다시 렌더링되더라도 값을 유지할 수 있기 때문에,
 
-```
-const prevCount = useRef(count);
-
-useEffect(() => {
-  prevCount.current = count;
-}, [count]);
-```
-
-위처럼 이전 값을 기억해야 할 때도 유용하다.
+렌더링을 트리거하지 않고 데이터를 저장해두는 용도로도 자주 사용된다.
 
 ---
 
-**간단 정리**
+**이전 값을 저장하고 싶을 때**
+
+  
+
+상태가 바뀔 때마다 이전 값과 비교해야 하는 상황에서는 useRef가 유용하게 쓰인다.
+
+예를 들어 숫자가 증가 중인지, 감소 중인지를 판단할 수 있다.
+
+```
+import { useEffect, useRef, useState } from "react";
+
+export default function TrendingNumber() {
+  const [count, setCount] = useState(0);
+  const prevCount = useRef(count);
+
+  const isIncreasing = count > prevCount.current;
+
+  useEffect(() => {
+    prevCount.current = count;
+  }, [count]);
+
+  return (
+    <div>
+      <p>현재 값: {count}</p>
+      <p>방향: {isIncreasing ? "증가 중" : "감소 중"}</p>
+      <button onClick={() => setCount(prev => prev + 1)}>+1</button>
+      <button onClick={() => setCount(prev => prev - 1)}>-1</button>
+    </div>
+  );
+}
+```
+
+여기서 prevCount.current는 이전 렌더링에서의 count를 유지하고 있다.
+
+이 값은 렌더링 사이에 유지되지만, **새로고침하면 당연히 초기화된다.**
+
+  
+
+즉, useRef는 **컴포넌트가 살아 있는 동안만 값을 기억**하고,
+
+**새로고침 시에는 상태와 마찬가지로 초기값으로 다시 시작된다.**
+
+  
+
+렌더링 사이에 값을 저장하고 싶다면 useRef
+
+사용자에게 보여주고 싶거나 화면에 반영되는 값이라면 useState
+
+---
+
+**정리**
 
 | **Hook**  | **언제 쓰나**              | **특징**            |
 | --------- | ---------------------- | ----------------- |
