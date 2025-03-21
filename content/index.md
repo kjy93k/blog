@@ -38,7 +38,8 @@ HeyB Blog는 배우고 경험한 것들, 그리고 문득 떠오른 생각들을
 ---
 
 📚 **storybook**
-[storybook.heyb.kr](storybook.heyb.kr)
+
+[storybook.heyb.kr](https://storybook.heyb.kr)
 
 👩🏻‍💻 **dev**
 
