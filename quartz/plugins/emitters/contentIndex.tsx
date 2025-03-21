@@ -60,7 +60,6 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndexMap, limit?:
     <description>${content.richContent ?? content.description}</description>
     <pubDate>${content.date?.toUTCString()}</pubDate>
   </item>`
-
   const items = Array.from(idx)
     .sort(([_, f1], [__, f2]) => {
       if (f1.date && f2.date) {

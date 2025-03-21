@@ -1,4 +1,5 @@
 ---
+date: 2025-03-17T15:25:53+09:00
 tags:
   - NextJS15
   - DataFetching
@@ -11,6 +12,7 @@ tags:
   - 웹개발
   - Frontend
 ---
+date: 2025-03-17T15:25:53+09:00
 Next.js 15에서는 **App Router의 도입으로 데이터 패칭 방식이 여러 가지로 나뉘게 되었다.**
 
 기존 Page Router에서는 getServerSideProps, getStaticProps, getInitialProps를 사용했지만,
@@ -50,6 +52,7 @@ Next.js가 같은 API 요청을 한 번만 실행한 후, 모든 컴포넌트가
 그렇다면 **각각의 방식이 어떤 역할을 하고, 언제 사용해야 하는지** 비교해보자.
 
 ---
+date: 2025-03-17T15:25:53+09:00
 
 ## **1. Next.js 15에서 데이터 패칭 방식 총정리**
 
@@ -60,6 +63,7 @@ Next.js가 같은 API 요청을 한 번만 실행한 후, 모든 컴포넌트가
 |**Server Actions 사용**|✅ 가능 (서버에서 직접 데이터 수정)|✅ 가능 (클라이언트에서 서버 액션 실행)|
   
 ---
+date: 2025-03-17T15:25:53+09:00
 
 ## **2. fetch()를 활용한 서버 데이터 패칭 (Server Component에서 실행)**
 
@@ -98,6 +102,7 @@ export default async function Page() {
 • **실시간 데이터 업데이트에는 적합하지 않음**
 
 ---
+date: 2025-03-17T15:25:53+09:00
 
 ## **3. Next.js fetch()와 React Query 캐싱 비교**
 
@@ -112,6 +117,7 @@ export default async function Page() {
   
 
 ---
+date: 2025-03-17T15:25:53+09:00
 
 ## **4. React Query를 활용한 클라이언트 사이드 데이터 패칭**
 
@@ -147,6 +153,7 @@ export default function Page() {
 ✅ **데이터가 변경될 가능성이 낮으면 캐싱된 데이터를 사용하고, 일정 시간이 지나면 자동으로 새로운 데이터를 가져옴**
 
 ---
+date: 2025-03-17T15:25:53+09:00
 
 ## **5. Server Actions를 활용한 데이터 수정 및 저장**
 
@@ -187,6 +194,7 @@ export async function createPost(title: string, content: string) {
 • 서버에서 실행되기 때문에 **데이터 패칭보다는 데이터 수정 및 저장에 적합**
 
 ---
+date: 2025-03-17T15:25:53+09:00
 
 ## **6. 결론 – Next.js 15에서 데이터 패칭은 어떻게 해야 할까?**
 

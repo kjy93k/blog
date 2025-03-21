@@ -1,4 +1,5 @@
 ---
+date: 2025-03-17T16:05:59+09:00
 tags:
   - NextJS15
   - fetch
@@ -9,6 +10,7 @@ tags:
   - 캐싱
   - Frontend
 ---
+date: 2025-03-17T16:05:59+09:00
 Next.js 15에서는 **App Router가 도입되면서 fetch()가 기본적인 데이터 패칭 방식**으로 자리 잡았다.
 
 특히 **자동 캐싱, Request Deduplication, Server Component에서의 직접 호출 등 강력한 기능**이 추가되면서,
@@ -31,6 +33,7 @@ Next.js 15에서는 **App Router가 도입되면서 fetch()가 기본적인 데�
 를 다룬다.
 
 ---
+date: 2025-03-17T16:05:59+09:00
 
 ## **1. Next.js 15에서 fetch()의 역할**
 
@@ -56,6 +59,7 @@ export default async function Page() {
 ✅ **자동 캐싱으로 네트워크 요청을 줄여 성능 최적화 가능**
 
 ---
+date: 2025-03-17T16:05:59+09:00
 
 ## **2. Next.js fetch()의 캐싱 전략**
 
@@ -74,6 +78,7 @@ Next.js는 fetch()를 실행할 때 **GET 요청이면 기본적으로 캐싱을
 하지만, **항상 최신 데이터를 가져와야 하는 경우**에는 **캐싱을 비활성화해야 한다.**
 
 ---
+date: 2025-03-17T16:05:59+09:00
 
 ### **📌 캐싱 전략 설정 방법**
 
@@ -111,6 +116,7 @@ const res = await fetch("https://api.example.com/data", { next: { revalidate: 60
 • **ISR(Incremental Static Regeneration)과 유사한 방식으로 동작**
 
 ---
+date: 2025-03-17T16:05:59+09:00
 
 ## **3. Request Deduplication – 중복 요청 제거**
 
@@ -143,6 +149,7 @@ export default async function Page() {
 ✅ **즉, 여러 컴포넌트에서 같은 데이터를 가져와도 Next.js는 중복 요청을 막아 네트워크 비용을 절감한다.**
 
 ---
+date: 2025-03-17T16:05:59+09:00
 
 ## **4. axios를 사용하지 않는 이유?**
 
@@ -168,6 +175,7 @@ Next.js 15에서는 fetch()를 사용하는 것이 더 유리하다.
 하지만 **클라이언트에서 API 요청을 체계적으로 관리하고, 인터셉터를 활용하려면 axios가 유리하다.**
 
 ---
+date: 2025-03-17T16:05:59+09:00
 
 ## **5. axios 대신 fetch()로 커스텀 API 헬퍼 만들기**
 
@@ -290,6 +298,7 @@ export async function fetchServer<T = unknown, R = unknown>(
 
 
 ---
+date: 2025-03-17T16:05:59+09:00
 ### **사용 예제**
 
   
@@ -350,6 +359,7 @@ const fetchWithLogging = async () => {
 
 
 ---
+date: 2025-03-17T16:05:59+09:00
 
 ## **6. 결론 – Next.js 15에서 fetch()를 어떻게 최적화할까?**
 
