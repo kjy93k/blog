@@ -127,10 +127,11 @@ export default function App() {
 context는 거의 필수처럼 사용된다.
 
   
-
 App Router 환경에서는 use client가 필요한 컴포넌트에만 context 사용이 권장되지만,
 
 리렌더링이 많지 않거나 구조적으로 context가 더 적합한 경우에는 여전히 사용하기 좋은 친구다.
+
+굉장히 애정하는 Hook이라 자세히 다뤄보자면..! 
 
 ---
 
