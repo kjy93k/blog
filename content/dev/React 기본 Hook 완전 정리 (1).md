@@ -46,6 +46,7 @@ useState는 [값, 값을 업데이트하는 함수] 형태의 배열을 반환�
   
 
 **상태 업데이트 방식에서 실수하기 쉬운 부분**
+
 ```
 setCount(count + 1);
 setCount(count + 1);
@@ -86,3 +87,53 @@ export default function Timer() {
   return <p>{seconds}초가 지났습니다.</p>;
 }
 ```
+
+두 번째 인자인 **의존성 배열**([])에 어떤 값이 들어가느냐에 따라 실행 조건이 달라진다.
+
+|**의존성 배열**|**실행 시점**|
+|---|---|
+|없음|매번 렌더링될 때마다 실행됨|
+|[]|마운트 시 한 번만 실행됨|
+|[count]|count가 변경될 때마다 실행됨|
+cleanup 함수를 리턴하지 않으면, 타이머나 이벤트 리스너가 쌓여서 **메모리 누수**가 발생할 수 있다.
+
+---
+
+**useRef – 값은 유지하지만 렌더링에는 영향을 주지 않을 때**
+
+```
+import { useRef } from "react";
+
+export default function FocusInput() {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    inputRef.current?.focus();
+  };
+
+  return (
+    <>
+      <input ref={inputRef} type="text" />
+      <button onClick={handleClick}>포커스 이동</button>
+    </>
+  );
+}
+```
+
+useRef는 .current를 통해 DOM에 직접 접근할 수 있다.
+
+리렌더링 없이도 값을 저장하고 유지할 수 있어서, **상태처럼 쓰이지만 렌더링을 유발하지는 않는다.**
+
+```
+const prevCount = useRef(count);
+
+useEffect(() => {
+  prevCount.current = count;
+}, [count]);
+```
+
+위처럼 이전 값을 기억해야 할 때도 유용하다.
+
+---
+
+**간단 정리**
