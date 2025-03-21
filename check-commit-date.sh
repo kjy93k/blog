@@ -2,9 +2,9 @@
 
 echo "✅ [hook] frontmatter.date 삽입 중..."
 
-# Git에서 커밋된 파일만 찾기
-for file in $(git diff --cached --name-only --diff-filter=A | grep '\.md$'); do
-  echo "☑️  Processing $file" # 파일 처리 시작
+# 모든 푸시된 내역 중에서 .md 파일만 선택
+for file in $(git log --pretty=format: --name-only --diff-filter=A | grep '\.md$' | sort -u); do
+  echo "☑️  Processing $file"  # 파일 처리 시작
 
   if [[ -f "$file" ]]; then
     echo "📄 파일이 존재: $file" # 파일이 존재하면 출력
