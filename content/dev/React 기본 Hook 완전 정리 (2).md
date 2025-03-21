@@ -1,3 +1,18 @@
+---
+tags:
+  - React
+  - Hooks
+  - useCallback
+  - useMemo
+  - useContext
+  - CompoundComponent
+  - useReducer
+  - useLayoutEffect
+  - 리액트성능최적화
+  - 리액트구조
+  - ContextAPI
+  - 리액트컴포넌트패턴
+---
 **useCallback, useMemo, useContext, useReducer, useLayoutEffect**
 
   
