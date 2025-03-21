@@ -317,3 +317,5 @@ useLayoutEffect처럼 **렌더 직전에 실행되는 Hook**이 더 적합하다
 다음 글에서는
 
 **React 18에서 추가된 Hook들과 UI 제어**에 대한 내용을 이어서 정리할 예정입니다.
+
+(useTransition, useDeferredValue, useId 등)

@@ -203,3 +203,5 @@ _(Vanilla Extract의 장단점 및 사용법은 별도의 글에서 더 자세�
 결론적으로, **Next.js 15에서는 App Router를 기본값으로 사용하지만,**
 
 **모든 프로젝트에서 반드시 App Router를 선택해야 하는 것은 아니다.**
+
+각 프로젝트의 **요구 사항에 맞춰 Page Router와 App Router 중 적절한 방식을 선택하는 것이 중요하다.**

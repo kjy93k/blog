@@ -193,3 +193,5 @@ useRef는 간단하면서도 유용한 도구가 된다.
 ---
 
 이제 다음 파트에서는
+
+useCallback, useMemo, useContext, useReducer, useLayoutEffect를 이어서 정리할 예정이다.
