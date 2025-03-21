@@ -128,20 +128,16 @@ context는 거의 필수처럼 사용된다.
 
   
 
-지금은 App Router 환경에서 use client가 필요한 컴포넌트에만 context 사용이 권장된다.
+App Router 환경에서는 use client가 필요한 컴포넌트에만 context 사용이 권장되지만,
 
-사용 전, 정말 이곳에서 context를 써야 하는지 고민이 필요한 시점이다.
-
-하지만 Page Router에서 개발할 때는 정말 애정하던 Hook이었다.
-
-Compound 구조를 만들면서 자식 컴포넌트들끼리 상태를 나눌 수 있다는 점이 가장 큰 장점이었다.
+리렌더링이 많지 않거나 구조적으로 context가 더 적합한 경우에는 여전히 사용하기 좋은 친구다.
 
 ---
 
 **예: Compound Component 형태의 Counter**
 
 ```
-<Counter initialValue={1}>
+<Counter initialValue={1} min={0} max={10000}>
   <Counter.Decrement />
   <Counter.Count />
   <Counter.Increment />
@@ -158,13 +154,18 @@ export const useCounterContext = () => {
   return context;
 };
 
-const Counter = ({ children, initialValue = 0 }) => {
-  const [count, setCount] = useState(initialValue);
-  const increment = () => setCount(c => c + 1);
-  const decrement = () => setCount(c => Math.max(0, c - 1));
+const Counter = ({ children, initialValue = 0, min = 0, max = 10000 }) => {
+  const [count, setCount] = useState(() => {
+    if (initialValue < min) return min;
+    if (initialValue > max) return max;
+    return initialValue;
+  });
+
+  const increment = () => setCount(prev => (prev + 1 > max ? prev : prev + 1));
+  const decrement = () => setCount(prev => (prev - 1 < min ? prev : prev - 1));
 
   return (
-    <CounterContext.Provider value={{ count, increment, decrement }}>
+    <CounterContext.Provider value={{ count, increment, decrement, min, max }}>
       <div>{children}</div>
     </CounterContext.Provider>
   );
@@ -176,17 +177,25 @@ Counter.Count = () => {
 };
 
 Counter.Increment = () => {
-  const { increment } = useCounterContext();
-  return <button onClick={increment}>+</button>;
+  const { increment, count, max } = useCounterContext();
+  return (
+    <button onClick={increment} disabled={count >= max}>
+      +
+    </button>
+  );
 };
 
 Counter.Decrement = () => {
-  const { decrement } = useCounterContext();
-  return <button onClick={decrement}>-</button>;
+  const { decrement, count, min } = useCounterContext();
+  return (
+    <button onClick={decrement} disabled={count <= min}>
+      -
+    </button>
+  );
 };
 
 Counter.Description = () => {
-  const { count } = useCounterContext();
-  return <p>현재 카운트는 {count}입니다.</p>;
+  const { count, min, max } = useCounterContext();
+  return <p>{min}부터 {max}까지, 현재 값은 {count}입니다.</p>;
 };
 ```
