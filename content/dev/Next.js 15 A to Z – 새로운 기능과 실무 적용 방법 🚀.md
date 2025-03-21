@@ -10,7 +10,6 @@ tags:
   - Frontend
   - 웹개발
 ---
-date: 2025-03-20T15:31:36+09:00
 Next.js 15은 기존 Page Router에서 **App Router 중심의 아키텍처로 전환**하면서,
 
 React Server Components(RSC), Server Actions, Partial Prerendering(PPR) 등의 기능을 도입했다.
@@ -44,7 +43,6 @@ date: 2025-03-20T15:31:36+09:00
 | **빌드 시스템**                        | Webpack & Vite         | Turbopack 적용 (더 빠른 빌드 속도)             |                                      |
 
 ---
-date: 2025-03-20T15:31:36+09:00
 
 ## **2. App Router로의 전환 – “App Router를 써야 하는 이유가 있나요?”**
 
@@ -129,7 +127,6 @@ export default function Page({ data }) {
 이제 Next.js 15에서는 이 방식이 **더 이상 지원되지 않는다.**
 
 ---
-date: 2025-03-20T15:31:36+09:00
 
 ### **📌 App Router에서의 데이터 패칭 (React Server Components 활용)**
 
@@ -206,7 +203,6 @@ export default function Page() {
 _(React Query 사용법 및 선택 기준에 대한 자세한 내용은 별도의 글에서 다룰 예정이다.)_
 
 ---
-date: 2025-03-20T15:31:36+09:00
 
 ## **5. Partial Prerendering (PPR) – SSG와 SSR의 결합**
 

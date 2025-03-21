@@ -12,7 +12,6 @@ tags:
   - 웹개발
   - Frontend
 ---
-date: 2025-03-17T15:25:53+09:00
 Next.js 15에서는 **App Router의 도입으로 데이터 패칭 방식이 여러 가지로 나뉘게 되었다.**
 
 기존 Page Router에서는 getServerSideProps, getStaticProps, getInitialProps를 사용했지만,
@@ -63,7 +62,6 @@ date: 2025-03-17T15:25:53+09:00
 |**Server Actions 사용**|✅ 가능 (서버에서 직접 데이터 수정)|✅ 가능 (클라이언트에서 서버 액션 실행)|
   
 ---
-date: 2025-03-17T15:25:53+09:00
 
 ## **2. fetch()를 활용한 서버 데이터 패칭 (Server Component에서 실행)**
 
@@ -117,7 +115,6 @@ date: 2025-03-17T15:25:53+09:00
   
 
 ---
-date: 2025-03-17T15:25:53+09:00
 
 ## **4. React Query를 활용한 클라이언트 사이드 데이터 패칭**
 
@@ -194,7 +191,6 @@ export async function createPost(title: string, content: string) {
 • 서버에서 실행되기 때문에 **데이터 패칭보다는 데이터 수정 및 저장에 적합**
 
 ---
-date: 2025-03-17T15:25:53+09:00
 
 ## **6. 결론 – Next.js 15에서 데이터 패칭은 어떻게 해야 할까?**
 

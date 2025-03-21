@@ -10,7 +10,6 @@ tags:
   - 캐싱
   - Frontend
 ---
-date: 2025-03-17T16:05:59+09:00
 Next.js 15에서는 **App Router가 도입되면서 fetch()가 기본적인 데이터 패칭 방식**으로 자리 잡았다.
 
 특히 **자동 캐싱, Request Deduplication, Server Component에서의 직접 호출 등 강력한 기능**이 추가되면서,
@@ -59,7 +58,6 @@ export default async function Page() {
 ✅ **자동 캐싱으로 네트워크 요청을 줄여 성능 최적화 가능**
 
 ---
-date: 2025-03-17T16:05:59+09:00
 
 ## **2. Next.js fetch()의 캐싱 전략**
 
@@ -116,7 +114,6 @@ const res = await fetch("https://api.example.com/data", { next: { revalidate: 60
 • **ISR(Incremental Static Regeneration)과 유사한 방식으로 동작**
 
 ---
-date: 2025-03-17T16:05:59+09:00
 
 ## **3. Request Deduplication – 중복 요청 제거**
 
@@ -175,7 +172,6 @@ Next.js 15에서는 fetch()를 사용하는 것이 더 유리하다.
 하지만 **클라이언트에서 API 요청을 체계적으로 관리하고, 인터셉터를 활용하려면 axios가 유리하다.**
 
 ---
-date: 2025-03-17T16:05:59+09:00
 
 ## **5. axios 대신 fetch()로 커스텀 API 헬퍼 만들기**
 
@@ -359,7 +355,6 @@ const fetchWithLogging = async () => {
 
 
 ---
-date: 2025-03-17T16:05:59+09:00
 
 ## **6. 결론 – Next.js 15에서 fetch()를 어떻게 최적화할까?**
 
