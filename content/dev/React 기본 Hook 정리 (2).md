@@ -67,7 +67,7 @@ export default function ExpensiveCalc() {
   const [toggle, setToggle] = useState(false);
 
   const expensiveValue = useMemo(() => {
-    console.log("🧮 복잡한 계산 실행");
+    console.log("복잡한 계산 실행");
     return count * 2;
   }, [count]);
 
@@ -79,4 +79,22 @@ export default function ExpensiveCalc() {
     </div>
   );
 }
+```
+
+• useMemo는 결과값을 기억한다.
+
+• 의존성 배열이 바뀌지 않으면 **이전 결과를 그대로 반환**한다.
+
+---
+
+**useContext – 컴포넌트 트리 전역으로 데이터 전달**
+
+  
+
+React에서는 props를 계속 아래로 넘기지 않고,
+
+**공통 데이터나 상태를 Context로 공유**할 수 있다.
+
+```
+
 ```
