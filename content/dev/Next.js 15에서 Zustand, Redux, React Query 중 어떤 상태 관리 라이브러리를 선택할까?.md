@@ -17,7 +17,7 @@ Next.js 15에서는 **App Router, React Server Components(RSC), Server Actions**
 
 이 글에서는 **Zustand, Redux, React Query 각각의 특징과 Next.js 15에서의 적합성을 비교**하고,
 
-**React Query의 적절한 사용 시점**까지 추가로 설명해보자.
+**React Query의 적절한 사용 시점**까지 살펴보자.
 
 ---
 
