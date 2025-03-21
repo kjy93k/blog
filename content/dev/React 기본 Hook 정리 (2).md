@@ -12,7 +12,7 @@
 
 ---
 
-**useCallback – 함수를 기억하고 싶을 때**
+## **useCallback – 함수를 기억하고 싶을 때**
 
   
 
@@ -51,7 +51,7 @@ export default function Parent() {
 
 ---
 
-**useMemo – 값을 기억하고 싶을 때**
+## **useMemo – 값을 기억하고 싶을 때**
 
   
 
@@ -87,7 +87,7 @@ export default function ExpensiveCalc() {
 
 ---
 
-**useContext – 컴포넌트 트리 전역으로 데이터 전달**
+## **useContext – 컴포넌트 트리 전역으로 데이터 전달**
 
   
 
@@ -134,7 +134,7 @@ App Router 환경에서는 use client가 필요한 컴포넌트에만 context �
 
 ---
 
-**예: Compound Component 형태의 Counter**
+### **예: Compound Component 형태의 Counter**
 
 ```
 <Counter initialValue={1} min={0} max={10000}>
@@ -144,6 +144,10 @@ App Router 환경에서는 use client가 필요한 컴포넌트에만 context �
   <Counter.Description />
 </Counter>
 ```
+
+각 버튼과 텍스트가 분리되어 있음에도,
+
+내부적으로는 하나의 context를 통해 상태와 핸들러를 공유한다.
 
 ```
 const CounterContext = createContext(null);
@@ -199,3 +203,110 @@ Counter.Description = () => {
   return <p>{min}부터 {max}까지, 현재 값은 {count}입니다.</p>;
 };
 ```
+
+이 구조는 UI 요소들을 독립적으로 정의하면서도
+
+중앙 상태(count, min, max)를 쉽게 공유할 수 있게 해준다.
+
+복잡한 props 전달 없이도 구조를 깔끔하게 유지할 수 있다는 점에서,
+
+Compound Component 패턴과 context의 조합은 여전히 유효하다.
+
+---
+## **useReducer – 상태가 복잡할 때 쓰는 useState**
+
+  
+
+useState는 단순한 값 관리에는 편리하지만,
+
+여러 상태가 함께 엮여 있거나, 상태 업데이트 로직이 복잡한 경우에는 useReducer가 더 적합하다.
+
+```
+import { useReducer } from "react";
+
+function reducer(state: number, action: "increment" | "decrement") {
+  switch (action) {
+    case "increment":
+      return state + 1;
+    case "decrement":
+      return state - 1;
+    default:
+      return state;
+  }
+}
+
+export default function Counter() {
+  const [count, dispatch] = useReducer(reducer, 0);
+
+  return (
+    <>
+      <p>{count}</p>
+      <button onClick={() => dispatch("increment")}>+1</button>
+      <button onClick={() => dispatch("decrement")}>-1</button>
+    </>
+  );
+}
+```
+
+• dispatch(action)을 통해 상태를 업데이트
+
+• switch 문이 많아지면 번거롭지만, 상태가 구조화되어 있는 경우에는 훨씬 명확하다
+
+---
+
+## **useLayoutEffect – 화면 그리기 전에 동작해야 할 일이 있을 때**
+
+  
+
+useEffect는 화면이 렌더링된 후 실행된다.
+
+하지만 어떤 경우에는 **화면이 그려지기 전에 작업이 필요할 수도 있다.**
+
+  
+
+예: 어떤 요소의 너비를 측정하고, 그 값에 따라 초기 스타일을 정해야 하는 경우
+
+```
+import { useLayoutEffect, useRef, useState } from "react";
+
+export default function LayoutExample() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+
+  useLayoutEffect(() => {
+    if (ref.current) {
+      setWidth(ref.current.offsetWidth);
+    }
+  }, []);
+
+  return (
+    <div ref={ref}>
+      <p>이 요소의 너비는 {width}px 입니다.</p>
+    </div>
+  );
+}
+```
+
+• useLayoutEffect는 **렌더링 직전에 동기적으로 실행**된다
+
+• 깜빡임, 화면 뒤늦게 정렬 등의 이슈를 방지하고 싶을 때 사용된다
+
+---
+
+## **정리**
+
+|**Hook**|**언제 쓰나**|**특징**|
+|---|---|---|
+|useCallback|함수 재생성을 피하고 싶을 때|의존성 배열 기준으로 기억|
+|useMemo|계산 결과를 기억하고 싶을 때|렌더링 최적화|
+|useContext|트리 내부 컴포넌트끼리 상태를 공유하고 싶을 때|props 없이 자연스럽게 연결 가능|
+|useReducer|복잡한 상태 관리|액션 기반으로 분리된 상태 처리|
+|useLayoutEffect|화면 그리기 전에 DOM 정보를 쓰거나 조작해야 할 때|useEffect보다 빠름|
+  
+---
+
+다음 글에서는
+
+**React 18에서 추가된 Hook들과 UI 제어**에 대한 내용을 이어서 정리할 예정입니다.
+
+(useTransition, useDeferredValue, useId 등)
