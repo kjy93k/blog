@@ -25,6 +25,7 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
 
   function ContentMetadata({ cfg, fileData, displayClass }: QuartzComponentProps) {
     const text = fileData.text
+    console.log(fileData)
 
     if (text) {
       const segments: (string | JSX.Element)[] = []
