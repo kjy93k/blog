@@ -12,24 +12,20 @@ tags:
   - 리액트구조
   - ContextAPI
   - 리액트컴포넌트패턴
+date: 2025-03-21T18:41:31+09:00
 ---
-**useCallback, useMemo, useContext, useReducer, useLayoutEffect**
 
-  
+**useCallback, useMemo, useContext, useReducer, useLayoutEffect**
 
 앞선 글에서는 useState, useEffect, useRef처럼
 
 리액트를 처음 시작할 때 마주치는 기본적인 Hook들을 정리했다.
-
-  
 
 이번에는 조금 더 **구조적인 관리나 퍼포먼스, 렌더링 시점 제어**에 관련된 Hook들을 모아봤다.
 
 ---
 
 ## **useCallback – 함수를 기억하고 싶을 때**
-
-  
 
 컴포넌트가 리렌더링될 때마다 내부에 있는 함수도 새로 만들어진다.
 
@@ -68,8 +64,6 @@ export default function Parent() {
 
 ## **useMemo – 값을 기억하고 싶을 때**
 
-  
-
 리렌더링될 때마다 다시 계산되는 값이 있을 때,
 
 **계산 비용이 크거나, 이전 값으로 재활용할 수 있다면 useMemo를 쓴다.**
@@ -103,8 +97,6 @@ export default function ExpensiveCalc() {
 ---
 
 ## **useContext – 컴포넌트 트리 전역으로 데이터 전달**
-
-  
 
 React에서는 props를 계속 아래로 넘기지 않고,
 
@@ -141,12 +133,11 @@ export default function App() {
 
 context는 거의 필수처럼 사용된다.
 
-  
 App Router 환경에서는 use client가 필요한 컴포넌트에만 context 사용이 권장되지만,
 
 리렌더링이 많지 않거나 구조적으로 context가 더 적합한 경우에는 여전히 사용하기 좋은 친구다.
 
-굉장히 애정하는 Hook이라 자세히 다뤄보자면..! 
+굉장히 애정하는 Hook이라 자세히 다뤄보자면..!
 
 ---
 
@@ -229,9 +220,8 @@ Counter.Description = () => {
 Compound Component 패턴과 context의 조합은 여전히 유효하다.
 
 ---
-## **useReducer – 상태가 복잡할 때 쓰는 useState**
 
-  
+## **useReducer – 상태가 복잡할 때 쓰는 useState**
 
 useState는 단순한 값 관리에는 편리하지만,
 
@@ -272,12 +262,9 @@ export default function Counter() {
 
 ## **useLayoutEffect – 화면에 그려지기 전에 미리 처리해야 할 일이 있을 때**
 
-  
 useEffect는 렌더링이 끝난 후 실행되지만,
 
 **화면에 보이기 전에 꼭 처리해야 하는 작업**이라면 useLayoutEffect를 써야 한다.
-
-  
 
 예를 들어, 다음과 같은 경우에 유용하다:
 
@@ -317,18 +304,16 @@ useLayoutEffect처럼 **렌더 직전에 실행되는 Hook**이 더 적합하다
 
 ## **정리**
 
-|**Hook**|**언제 쓰나**|**특징**|
-|---|---|---|
-|useCallback|함수 재생성을 피하고 싶을 때|의존성 배열 기준으로 기억|
-|useMemo|계산 결과를 기억하고 싶을 때|렌더링 최적화|
-|useContext|트리 내부 컴포넌트끼리 상태를 공유하고 싶을 때|props 없이 자연스럽게 연결 가능|
-|useReducer|복잡한 상태 관리|액션 기반으로 분리된 상태 처리|
-|useLayoutEffect|화면 그리기 전에 DOM 정보를 쓰거나 조작해야 할 때|useEffect보다 빠름|
-  
+| **Hook**        | **언제 쓰나**                                     | **특징**                        |
+| --------------- | ------------------------------------------------- | ------------------------------- |
+| useCallback     | 함수 재생성을 피하고 싶을 때                      | 의존성 배열 기준으로 기억       |
+| useMemo         | 계산 결과를 기억하고 싶을 때                      | 렌더링 최적화                   |
+| useContext      | 트리 내부 컴포넌트끼리 상태를 공유하고 싶을 때    | props 없이 자연스럽게 연결 가능 |
+| useReducer      | 복잡한 상태 관리                                  | 액션 기반으로 분리된 상태 처리  |
+| useLayoutEffect | 화면 그리기 전에 DOM 정보를 쓰거나 조작해야 할 때 | useEffect보다 빠름              |
+
 ---
 
 다음 글에서는
 
 **React 18에서 추가된 Hook들과 UI 제어**에 대한 내용을 이어서 정리할 예정입니다.
-
-(useTransition, useDeferredValue, useId 등)
