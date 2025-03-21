@@ -1,5 +1,4 @@
 ---
-date: 2025-03-20T15:31:36+09:00
 tags:
   - NextJS15
   - React
@@ -29,7 +28,6 @@ React Server Components(RSC), Server Actions, Partial Prerendering(PPR) 등의 �
 이 글에서 **핵심 기능과 실무 적용 방법을 정리**한다.
 
 ---
-date: 2025-03-20T15:31:36+09:00
 
 ## **1. Next.js 15의 주요 변화 – 뭐가 달라졌을까?**
 
@@ -93,7 +91,6 @@ _“그럼 App Router를 써야 하는 이유가 있나요?”_ 라는 질문을
 **기존 Page Router 프로젝트를 당장 전환할 필요는 없다.**
 
 ---
-date: 2025-03-20T15:31:36+09:00
 
 ## **3. 데이터 패칭 – Page Router vs App Router에서의 차이**
 
@@ -155,7 +152,6 @@ export default async function Page() {
 **페이지가 서버에서 먼저 렌더링되며, API 호출을 별도로 하지 않아도 된다는 점이 다르다.**
 
 ---
-date: 2025-03-20T15:31:36+09:00
 
 ## **4. React Query – App Router에서도 필요할까?**
 
@@ -219,7 +215,6 @@ PPR은 기존 ISR(Incremental Static Regeneration) 방식과 다르게,
 이 기능은 아직 **실험적인 기능**이므로, 실무에서 바로 적용하기에는 시간이 필요할 수도 있다.
 
 ---
-date: 2025-03-20T15:31:36+09:00
 
 ## **6. 결론 – Next.js 15, 당장 전환해야 할까?**
 

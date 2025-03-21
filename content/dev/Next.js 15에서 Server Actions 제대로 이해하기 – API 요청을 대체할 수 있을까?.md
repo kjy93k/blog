@@ -1,5 +1,4 @@
 ---
-date: 2025-03-20T15:46:41+09:00
 tags:
   - NextJS15
   - ServerActions
@@ -19,7 +18,6 @@ Next.js 15에서는 **Server Actions**가 추가되면서 기존의 API 요청 �
 이 글에서는 **Server Actions의 개념, 기존 방식과의 차이점, 실무에서의 적절한 활용법**을 정리한다.
 
 ---
-date: 2025-03-20T15:46:41+09:00
 
 **1. Server Actions란?**
 
@@ -86,7 +84,6 @@ const handleSubmit = async (formData) => {
 • **클라이언트와 서버 간 통신 과정이 단순해진다.**
 
 ---
-date: 2025-03-20T15:46:41+09:00
 
 **2. Server Actions vs 기존 fetch() 요청**
 
@@ -131,7 +128,6 @@ const handleSubmit = async () => {
 **API 엔드포인트 없이 서버에서 데이터 처리 가능하다.**
 
 ---
-date: 2025-03-20T15:46:41+09:00
 
 **폼 데이터 처리 예제**
 
@@ -181,7 +177,6 @@ export default function Form() {
 • **외부 API 요청을 직접 수행하기 어렵다.** (서버 내부 로직에 더 적합함)
 
 ---
-date: 2025-03-20T15:46:41+09:00
 
 **5. Server Actions vs 기존 방식 – 언제 어떤 걸 선택해야 할까?**
 
@@ -214,7 +209,6 @@ date: 2025-03-20T15:46:41+09:00
 ✔ **Next.js의 App Router와 함께 사용하면 더욱 직관적인 데이터 처리가 가능하다.**
 
 ---
-date: 2025-03-20T15:46:41+09:00
 
 **최종 정리**
 

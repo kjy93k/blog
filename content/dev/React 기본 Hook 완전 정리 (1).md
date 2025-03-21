@@ -15,7 +15,6 @@ useState, useEffect, useRef부터 자주 쓰이는 Hook들을 확인하고,
 사용 중 실수할 수 있는 부분도 함께 정리해보려고 한다.
 
 ---
-date: 2025-03-21T16:06:14+09:00
 
 ## **useState – 상태 값을 저장할 때**
 
@@ -98,7 +97,6 @@ export default function Timer() {
 cleanup 함수를 리턴하지 않으면, 타이머나 이벤트 리스너가 쌓여서 **메모리 누수**가 발생할 수 있다.
 
 ---
-date: 2025-03-21T16:06:14+09:00
 
 ## **useRef – 값은 유지하지만 렌더링에는 영향을 주지 않을 때**
 
@@ -182,7 +180,6 @@ export default function TrendingNumber() {
 useRef는 간단하면서도 유용한 도구가 된다.
 
 ---
-date: 2025-03-21T16:06:14+09:00
 
 ## **정리**
 
