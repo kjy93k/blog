@@ -254,42 +254,48 @@ export default function Counter() {
 
 ---
 
-## **useLayoutEffect – 화면 그리기 전에 동작해야 할 일이 있을 때**
+## **useLayoutEffect – 화면에 그려지기 전에 미리 처리해야 할 일이 있을 때**
+
+  
+useEffect는 렌더링이 끝난 후 실행되지만,
+
+**화면에 보이기 전에 꼭 처리해야 하는 작업**이라면 useLayoutEffect를 써야 한다.
 
   
 
-useEffect는 화면이 렌더링된 후 실행된다.
+예를 들어, 다음과 같은 경우에 유용하다:
 
-하지만 어떤 경우에는 **화면이 그려지기 전에 작업이 필요할 수도 있다.**
+• **input 자동 포커스**: 화면이 깜빡이기 전에 포커스를 맞춰야 할 때
 
-  
+• **스크롤 위치 고정**: 모달을 띄우면서 배경 스크롤을 잠가야 할 때
 
-예: 어떤 요소의 너비를 측정하고, 그 값에 따라 초기 스타일을 정해야 하는 경우
+• **위치 기반 UI 조정**: 드롭다운이나 툴팁의 위치를 버튼 기준으로 계산할 때
 
 ```
-import { useLayoutEffect, useRef, useState } from "react";
-
-export default function LayoutExample() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
-
-  useLayoutEffect(() => {
-    if (ref.current) {
-      setWidth(ref.current.offsetWidth);
-    }
-  }, []);
-
-  return (
-    <div ref={ref}>
-      <p>이 요소의 너비는 {width}px 입니다.</p>
-    </div>
-  );
-}
+useLayoutEffect(() => {
+  inputRef.current?.focus();
+}, []);
 ```
 
-• useLayoutEffect는 **렌더링 직전에 동기적으로 실행**된다
+```
+useLayoutEffect(() => {
+  const scrollY = window.scrollY;
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${scrollY}px`;
 
-• 깜빡임, 화면 뒤늦게 정렬 등의 이슈를 방지하고 싶을 때 사용된다
+  return () => {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    window.scrollTo(0, scrollY);
+  };
+}, []);
+```
+
+이런 작업들은
+
+렌더링이 끝난 뒤에 처리하면 **깜빡임이 생기거나 순간적으로 이상한 위치에 렌더링**되기 때문에
+
+useLayoutEffect처럼 **렌더 직전에 실행되는 Hook**이 더 적합하다.
 
 ---
 
