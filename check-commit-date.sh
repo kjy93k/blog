@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Git에서 커밋된 파일만 찾기
-for file in $(git diff --cached --name-only --diff-filter=AM | grep '\.md$'); do
+# 커밋된 md 파일만 찾기 (content 폴더에 있는 md 파일들만)
+for file in $(git ls-tree -r HEAD --name-only | grep 'content/.*\.md$'); do
   if [[ -f "$file" ]]; then
     echo "☑️  Processing $file"
 
