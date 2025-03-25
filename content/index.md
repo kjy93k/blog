@@ -39,7 +39,7 @@ HeyB Blog는 배우고 경험한 것들, 그리고 문득 떠오른 생각들을
 
 📚 **storybook**
 
-[heyb storybook 구경가기](https://storybook.heyb.kr)
+[HeyB storybook 구경가기](https://storybook.heyb.kr)
 
 👩🏻‍💻 **dev**
 
