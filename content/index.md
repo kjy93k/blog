@@ -39,7 +39,7 @@ HeyB Blog는 배우고 경험한 것들, 그리고 문득 떠오른 생각들을
 
 📚 **storybook**
 
-[storybook.heyb.kr](https://storybook.heyb.kr)
+[heyb storybook 구경가기](https://storybook.heyb.kr)
 
 👩🏻‍💻 **dev**
 
@@ -49,17 +49,7 @@ HeyB Blog는 배우고 경험한 것들, 그리고 문득 떠오른 생각들을
 
 [[Next.js App Router vs Page Router – 실무에서 어떤 선택이 적합할까?]]
 
-[[React Server Components(RSC) 제대로 이해하기 – Next.js의 렌더링 방식 정리]]
-
-[[Next.js 15에서 데이터 패칭 – fetch(), React Query, Server Actions 비교]]
-
-[[Next.js 15에서 fetch() 최적화 – 캐싱, Request Deduplication, 커스텀 API 헬퍼(with Zod)]]
-
-[[Next.js 15에서 Zustand, Redux, React Query 중 어떤 상태 관리 라이브러리를 선택할까?]]
-
-[[Next.js 15에서 Server Actions 제대로 이해하기 – API 요청을 대체할 수 있을까?]]
-
-[[Partial Prerendering (PPR) – SSG와 SSR의 경계를 허물다]]
+...
 
 💡 **idea**
 
@@ -69,6 +59,8 @@ HeyB Blog는 배우고 경험한 것들, 그리고 문득 떠오른 생각들을
 
 [[Chapter 3. 개발 시작 – 컴포넌트 설계, 설정, 그리고 끝없는 고민들]]
 
+...
+
 🏡 **life**
 
 [[전세사기부터 회생까지 (1) - 내가 전세사기라니?!]]
@@ -77,10 +69,4 @@ HeyB Blog는 배우고 경험한 것들, 그리고 문득 떠오른 생각들을
 
 [[전세사기부터 회생까지 (3) - 임차권등기 보정명령 & 경매 전날]]
 
-[[전세사기부터 회생까지 (4) – 경매 진행, 배당을 받을 수 있을까?]]
-
-[[전세사기부터 회생까지 (5) – 경매 이후, 배당과 이사]]
-
-[[전세사기부터 회생까지 (6) – 배당금 수령 & 이사 과정]]
-
-[[전세사기부터 회생까지 (7) – 배당금 수령, 그리고 현실적인 고민]]
+...
