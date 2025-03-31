@@ -14,7 +14,7 @@ tags:
   
 ---
 
-**useRouter – 라우팅 관련 정보와 함수 제공**
+## **useRouter – 라우팅 관련 정보와 함수 제공**
 
   
 
@@ -42,7 +42,7 @@ useRouter는 페이지 이동을 쉽게 할 수 있게 도와준다. 또한, 페
 
 ---
 
-**usePathname – 현재 경로 얻기**
+## **usePathname – 현재 경로 얻기**
 
   
 
@@ -64,15 +64,76 @@ export default function Navigation() {
 
 ---
 
+## **useSearchParams – 쿼리 파라미터 관리**
+
+  
+
+useSearchParams는 현재 URL에서 쿼리 파라미터를 쉽게 가져오고 변경할 수 있게 해주는 Hook이다. 이를 통해 URL의 쿼리 파라미터를 직접 조작하거나 상태에 맞게 URL을 업데이트할 수 있다.
+
+```
+import { useSearchParams } from 'next/navigation';
+
+export default function SearchPage() {
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get('query');
+
+  return (
+    <div>
+      <h1>검색어: {searchQuery}</h1>
+    </div>
+  );
+}
+```
+
+useSearchParams는 URL에 있는 쿼리 파라미터를 쉽게 처리할 수 있게 도와준다. 예를 들어, 검색 페이지에서 사용자가 검색어를 입력할 때 URL의 쿼리 파라미터를 업데이트하고, 그 값을 읽어와서 적절히 처리할 수 있다.
+
+---
+
 **그럼 Page Router에서는 어떻게 쓰나?**
 
   
 
-App Router에서 제공하는 useRouter는 Page Router에서는 사용할 수 없다. 대신, next/router를 사용하여 페이지를 이동하고 라우터 상태를 관리할 수 있다. next/router는 App Router와 Page Router 모두에서 사용 가능한 클래식한 방법이다.
+App Router에서 제공하는 useRouter는 Page Router에서는 사용할 수 없다. 대신, next/router를 사용하여 페이지를 이동하고 라우터 상태를 관리할 수 있다. next/router는 아래와 같은 방식으로 사용할 수 있다.
 
 ---
 
-**useRouter vs next/router – Page Router에서는 어떻게 써야 할까?**
+**Page Router에서는 next/router 사용하기**
 
-Page Router에서는 App Router에서 제공하는 useRouter는 Page Router에서는 사용할 수 없다. 대신, next/router를 사용하여 페이지 이동을 처리할 수 있다. next/router는 아래와 같은 방식으로 사용할 수 있다.
+  
 
+App Router에서 제공하는 useRouter는 Page Router에서는 사용할 수 없다. 대신, next/router를 사용하여 페이지 이동을 처리할 수 있다. next/router는 router.push, router.replace, router.query, router.pathname 등 다양한 기능을 제공한다.
+
+```
+import { useRouter } from 'next/router';
+
+export default function MyPage() {
+  const router = useRouter();
+
+  // 현재 페이지의 경로를 가져옴
+  const currentPath = router.pathname;
+
+  // 쿼리 파라미터를 가져옴
+  const query = router.query;
+
+  // 라우트 매개변수를 가져옴
+  const { id } = router.query;
+
+  const handleClick = () => {
+    router.push('/next-page');
+  };
+
+  return (
+    <div>
+      <p>현재 경로: {currentPath}</p>
+      <p>쿼리 파라미터: {JSON.stringify(query)}</p>
+      <button onClick={handleClick}>Go to Next Page</button>
+    </div>
+  );
+}
+```
+
+next/router는 useRouter와 비슷한 방식으로 동작하지만, **App Router**에서는 사용할 수 없다. Page Router에서 라우팅 작업을 처리할 때는 next/router를 사용해야 한다. 위 코드에서처럼 next/router는 현재 경로, 쿼리 파라미터, 라우트 매개변수 등을 쉽게 가져올 수 있다.
+
+---
+
+이렇게 useRouter와 next/router를 구분하여 사용하면 각 환경에 맞는 라우팅을 구현할 수 있다. App Router에서 제공하는 useRouter와 Page Router에서 사용하는 next/router의 차이를 이해하고, 적절한 환경에서 사용할 수 있도록 해야 한다.
