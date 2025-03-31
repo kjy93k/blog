@@ -93,7 +93,7 @@ useSearchParams는 URL에 있는 쿼리 파라미터를 쉽게 처리할 수 있
 
   
 
-Page Router에서는 App Router와 달리 next/router를 사용한다. 여기서는 useRouter가 아닌 next/router에서 제공하는 기능을 이용해서 라우팅을 처리하게 된다. next/router에서 제공하는 router.push, router.replace 등을 사용해 페이지를 이동시키고, router.query로 쿼리 파라미터를 읽을 수 있다.
+**Page Router**에서는 **`next/navigation`** 대신 **`next/router`** 를 사용한다.  **`next/navigation의 useRouter`** 는 App Router에서만 사용할 수 있으며, **Page Router에서는 `next/router`** 에서 제공하는 기능을 사용해 페이지를 이동시키고, 경로를 관리해야 한다. `next/router`는 `router.push`, `router.replace`, `router.query` 등을 제공하며, 페이지의 쿼리 파라미터나 경로 정보를 가져오는 데 사용된다.
 
 ```
 import { useRouter } from 'next/router';
@@ -123,8 +123,6 @@ export default function MyPage() {
   );
 }
 ```
-
-next/router는 useRouter와 비슷한 방식으로 동작하지만, **App Router**에서는 사용할 수 없다. Page Router에서 라우팅 작업을 처리할 때는 next/router를 사용해야 한다. 위 코드에서처럼 next/router는 현재 경로, 쿼리 파라미터, 라우트 매개변수 등을 쉽게 가져올 수 있다.
 
 ---
 
