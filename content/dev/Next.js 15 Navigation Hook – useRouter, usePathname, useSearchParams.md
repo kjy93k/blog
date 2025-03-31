@@ -61,3 +61,18 @@ export default function Navigation() {
   );
 }
 ```
+
+---
+
+**그럼 Page Router에서는 어떻게 쓰나?**
+
+  
+
+App Router에서 제공하는 useRouter는 Page Router에서는 사용할 수 없다. 대신, next/router를 사용하여 페이지를 이동하고 라우터 상태를 관리할 수 있다. next/router는 App Router와 Page Router 모두에서 사용 가능한 클래식한 방법이다.
+
+---
+
+**useRouter vs next/router – Page Router에서는 어떻게 써야 할까?**
+
+Page Router에서는 App Router에서 제공하는 useRouter는 Page Router에서는 사용할 수 없다. 대신, next/router를 사용하여 페이지 이동을 처리할 수 있다. next/router는 아래와 같은 방식으로 사용할 수 있다.
+
