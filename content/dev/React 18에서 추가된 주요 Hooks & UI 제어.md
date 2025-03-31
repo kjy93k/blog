@@ -7,7 +7,7 @@ React 18이 나오면서, useTransition, useDeferredValue, useId 같은 새로�
 
 ---
 
-**useTransition** – 비동기 작업의 우선순위 조정
+## **useTransition** – 비동기 작업의 우선순위 조정
 
   
 
@@ -39,7 +39,7 @@ function MyComponent() {
 
 ---
 
-**useDeferredValue** – 렌더링 지연시키기
+## **useDeferredValue** – 렌더링 지연시키기
 
   
 
@@ -69,7 +69,7 @@ function Search() {
 
 ---
 
-**useId** – 고유 ID 생성
+## **useId** – 고유 ID 생성
 
   
 
@@ -90,10 +90,14 @@ function MyComponent() {
 
 **정리**
 
-  
+| **Hook**         |**언제 쓰나**|**특징**|
+|---|---|---|
+| useTransition    |비동기 작업의 우선순위 조정 시|비동기 작업의 우선순위 조정|
+| useDeferredValue |렌더링 지연이 필요할 때|렌더링을 지연시켜 성능 최적화|
+| useId            |고유 ID를 생성할 때|서버와 클라이언트에서 동일한 ID|
 
-새로 추가된 훅들은 UI의 반응성을 높이고 성능 최적화에 중요한 역할을 한다. useTransition은 비동기 작업의 우선순위를 처리하고, useDeferredValue는 렌더링 지연을 통해 불필요한 연산을 줄이며, useId는 고유한 ID 값을 쉽게 생성할 수 있게 해준다.
+---
 
-  
+**다음 파트 예고**
 
-이 훅들을 적절히 활용하면, React 애플리케이션의 성능을 더 효율적으로 최적화할 수 있을 것이다.
+  .
