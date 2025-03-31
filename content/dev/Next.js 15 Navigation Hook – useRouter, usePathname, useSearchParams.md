@@ -126,4 +126,17 @@ export default function MyPage() {
 
 ---
 
-이렇게 useRouter와 next/router를 구분하여 사용하면 각 환경에 맞는 라우팅을 구현할 수 있다. App Router에서 제공하는 useRouter와 Page Router에서 사용하는 next/router의 차이를 이해하고, 적절한 환경에서 사용할 수 있도록 해야 한다.
+## **정리**
+
+| **Hook**        | **언제 쓰나**                        | **특징**                    |
+| --------------- | -------------------------------- | ------------------------- |
+| useRouter       | App Router에서 페이지 이동, 라우팅 상태 관리 시 | 페이지 이동과 라우팅 관련 정보를 제공     |
+| usePathname     | 현재 경로를 가져올 때                     | 현재 페이지의 경로를 반환            |
+| useSearchParams | 쿼리 파라미터를 쉽게 가져올 때                | URL의 쿼리 파라미터를 관리          |
+| next/router     | Page Router에서 라우팅 관련 작업 시        | 페이지 이동, 쿼리 파라미터, 경로 정보 제공 |
+
+---
+
+**다음 파트에서는**
+
+useSelectedLayoutSegment, useFormState, useFormStatus와 같은 새로운 **App Router** 관련 훅을 살펴보며, 그 사용법과 실무에서 어떻게 활용할 수 있는지에 대해 다룰 예정이다. React와 Next.js의 최신 기능들을 실무에 어떻게 적용할 수 있을지 고민해보고, 각 훅들의 특성을 잘 활용하는 방법을 정리할 예정이다.
