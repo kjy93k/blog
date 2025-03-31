@@ -89,19 +89,11 @@ useSearchParams는 URL에 있는 쿼리 파라미터를 쉽게 처리할 수 있
 
 ---
 
-**그럼 Page Router에서는 어떻게 쓰나?**
+## **그럼 Page Router에서는 어떻게 쓰나?**
 
   
 
-App Router에서 제공하는 useRouter는 Page Router에서는 사용할 수 없다. 대신, next/router를 사용하여 페이지를 이동하고 라우터 상태를 관리할 수 있다. next/router는 아래와 같은 방식으로 사용할 수 있다.
-
----
-
-**Page Router에서는 next/router 사용하기**
-
-  
-
-App Router에서 제공하는 useRouter는 Page Router에서는 사용할 수 없다. 대신, next/router를 사용하여 페이지 이동을 처리할 수 있다. next/router는 router.push, router.replace, router.query, router.pathname 등 다양한 기능을 제공한다.
+Page Router에서는 App Router와 달리 next/router를 사용한다. 여기서는 useRouter가 아닌 next/router에서 제공하는 기능을 이용해서 라우팅을 처리하게 된다. next/router에서 제공하는 router.push, router.replace 등을 사용해 페이지를 이동시키고, router.query로 쿼리 파라미터를 읽을 수 있다.
 
 ```
 import { useRouter } from 'next/router';
