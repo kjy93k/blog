@@ -9,7 +9,7 @@ tags:
   - React
   - 웹개발
   - Frontend
-date: 2025-03-20T16:01:44+09:00
+date: 2025-03-20T16:01:44
 ---
 
 Next.js 15에서는 **Partial Prerendering (PPR)** 이라는 새로운 렌더링 방식이 도입되었다.

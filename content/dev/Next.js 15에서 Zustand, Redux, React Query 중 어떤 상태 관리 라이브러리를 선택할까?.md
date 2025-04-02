@@ -8,7 +8,7 @@ tags:
   - 웹개발
   - React
   - Frontend
-date: 2025-03-20T15:21:34+09:00
+date: 2025-03-20T15:21:34
 ---
 
 Next.js 15에서는 **App Router, React Server Components(RSC), Server Actions** 등의 변화로 인해

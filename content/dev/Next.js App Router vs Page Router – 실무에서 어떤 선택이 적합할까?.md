@@ -9,7 +9,7 @@ tags:
   - React
   - 웹개발
   - Frontend
-date: 2025-03-12T20:50:22+09:00
+date: 2025-03-12T20:50:22
 ---
 
 Next.js 13부터 **App Router가 도입**되었고,

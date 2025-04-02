@@ -8,7 +8,7 @@ tags:
   - Frontend
 aliases:
   - HeyB 블로그 세팅기 ✨✨
-date: 2025-03-09T23:17:18+09:00
+date: 2025-03-09T23:17:18
 ---
 
 ## **Obsidian 기반 블로그 Quartz 설정부터, Cloudflare Pages 배포, 도메인 연결까지!**

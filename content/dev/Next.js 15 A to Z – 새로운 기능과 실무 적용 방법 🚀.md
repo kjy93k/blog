@@ -8,7 +8,7 @@ tags:
   - ReactServerComponents
   - Frontend
   - 웹개발
-date: 2025-03-20T15:31:36+09:00
+date: 2025-03-20T15:31:36
 ---
 
 Next.js 15은 기존 Page Router에서 **App Router 중심의 아키텍처로 전환**하면서,

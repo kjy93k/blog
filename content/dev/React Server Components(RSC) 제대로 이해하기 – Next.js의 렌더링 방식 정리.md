@@ -8,7 +8,7 @@ tags:
   - React
   - ServerSideRendering
   - Frontend
-date: 2025-03-12T21:00:24+09:00
+date: 2025-03-12T21:00:24
 ---
 
 Next.js 15에서는 **React Server Components(RSC)**가 기본적으로 사용되며,
