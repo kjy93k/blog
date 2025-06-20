@@ -93,3 +93,8 @@ function solution(n, k) {
 ### 짝수의 합
 
 1부터 n까지 짝수만 더하기
+```js
+function solution(n) { 
+	return Array(n).fill().map((_, index) => index + 1).filter(v=> v % 2 === 0).reduce((a, c) => a + c, 0);
+}
+```
