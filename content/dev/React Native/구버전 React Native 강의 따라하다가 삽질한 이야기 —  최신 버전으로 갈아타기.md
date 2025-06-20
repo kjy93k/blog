@@ -1,3 +1,11 @@
+---
+tags:
+  - 개발
+  - 리액트네이티브
+  - ReactNative
+  - ReactNativeCLI
+date: 2025-06-20T16:57:00
+---
 ### **들어가며**
 
   
@@ -113,8 +121,12 @@ Expo로 작업할 땐 없던 버전 충돌.
 rm -rf node_modules
 npm install
 cd ios
-rm -rf Pods Podfile.lock build
+
+// 기존 Pod 의존성 폴더 제거, 고정된 Pod 버전 정보 제거, 이전 Xcode 빌드 캐시 제거 
+rm -rf Pods Podfile.lock build  
 pod install --repo-update // pod install은 iOS 네이티브 의존성을 맞출 때만 필요
+
+cd ..
 ```
 
 - iOS는 .xcworkspace로 열어야 한다. .xcodeproj로 열면 CocoaPods가 안 붙는다.
@@ -135,33 +147,18 @@ npx react-native run-ios
 ### **앞으로의 다짐**
 
   
+앞으로는 강의 코드를 무조건 그대로 따라가지 않는다.
 
-이번 경험 덕분에 확실히 배웠다.
+먼저 공식 문서를 확인하고 내 환경에 맞게 수정해서 쓴다.
 
-구버전 강의를 그대로 따라가면 결국 버전 호환 문제는 반복된다.
-
-  
-앞으로는 강의를 시작하기 전 공식 문서를 먼저 확인하고, 현재 내 개발 환경에 맞게 직접 코드를 수정해 사용할 계획이다.
-
-이런 과정 자체가 좋은 연습이고, 앞으로도 내 개발 실력을 더 단단하게 만들어 줄 것이다.
+이런 삽질이 결국엔 실력으로 남는다.
 
 ---
 
-### **참고 링크**
+### **참고**
 
 - [React Native 공식 환경 설정](https://reactnative.dev/docs/environment-setup)
     
-- [NVM 공식](https://github.com/nvm-sh/nvm)
+- [NVM](https://github.com/nvm-sh/nvm)
     
-- [CocoaPods 공식](https://cocoapods.org/)
-    
-
----
-
-## **끝**
-
-  
-
-이 글이 비슷한 상황을 겪을 분들에게 작은 도움이 되길 바랍니다.
-
-질문이나 피드백이 있다면 댓글로 남겨주세요!
+- [CocoaPods](https://cocoapods.org/)
