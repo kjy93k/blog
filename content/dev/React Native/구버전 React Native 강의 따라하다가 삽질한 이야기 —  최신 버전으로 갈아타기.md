@@ -116,8 +116,8 @@ cd ios
 rm -rf Pods Podfile.lock build
 pod install --repo-update
 ```
+
 - iOS는 .xcworkspace로 열어야 한다. .xcodeproj로 열면 CocoaPods가 안 붙는다.
-    
 
 ---
 
@@ -131,8 +131,7 @@ npm install  # 또는 yarn install
 cd ios
 pod install --repo-update
 
-npx react-native start  # 첫 번째 터미널
-npx react-native run-ios  # 두 번째 터미널
+npx react-native run-ios 
 ```
 ---
 
