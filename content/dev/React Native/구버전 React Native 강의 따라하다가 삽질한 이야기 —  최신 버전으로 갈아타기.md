@@ -114,7 +114,7 @@ rm -rf node_modules
 npm install
 cd ios
 rm -rf Pods Podfile.lock build
-pod install --repo-update
+pod install --repo-update // pod install은 iOS 네이티브 의존성을 맞출 때만 필요
 ```
 
 - iOS는 .xcworkspace로 열어야 한다. .xcodeproj로 열면 CocoaPods가 안 붙는다.
@@ -127,9 +127,6 @@ pod install --repo-update
 npx @react-native-community/cli init MyApp --version latest
 
 npm install  # 또는 yarn install
-
-cd ios
-pod install --repo-update
 
 npx react-native run-ios 
 ```
