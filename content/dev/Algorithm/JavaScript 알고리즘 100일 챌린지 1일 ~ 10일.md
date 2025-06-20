@@ -5,10 +5,12 @@ tags:
   - 제주코딩베이스캠프
 date: 2025-06-21T21:53:00
 ---
+##  제주코딩베이스캠프 유튜브 - JavaScript 알고리즘 100일 챌린지
+
 
 ### 몫 구하기
 
-정수 num1, num2가 주어질 때 몫만 반환
+정수 num1, num2가 주어질 때 몫 구하기
 Math.floor 또는 ~~ 비트 연산 사용하여 실수가 나오지 않도록 함
 
 ```js
@@ -161,5 +163,16 @@ function solution(n) {
 num_list의 원소 중 짝수와 홀수의 개수를 담은 배열 구하기
 
 ```js
-
+function solution(num_list) { 
+	var answer = [0, 0]; 
+	for (let item of num_list) { 
+		// if (item % 2 == 0) { 
+		// answer[0] += 1; 
+		// } else { 
+		// answer[1] += 1; 
+		// } 
+		answer[item % 2] += 1;
+	} 
+	return answer; 
+}
 ```
