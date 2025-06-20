@@ -6,9 +6,6 @@ tags:
   - ReactNativeCLI
 date: 2025-06-20T16:57:00
 ---
-### **들어가며**
-
-  
 React Native CLI 강의를 그대로 따라하다가 예상치 못한 문제가 생겼다.
 
 구버전 Ruby, CocoaPods, React Native CLI를 억지로 맞추다 보니 호환이 되지 않았다.

@@ -6,10 +6,6 @@ tags:
   - ReactNativeCLI
 date: 2025-06-20T15:06:00
 ---
-### **들어가며**
-
-  
-
 구인 공고를 보다 보면 요즘 자주 보이는 문구가 있다.
 
 **“React, React Native, WebView 경험 우대”**
