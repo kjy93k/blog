@@ -43,3 +43,25 @@ function solution(age) {
 
 }
 ```
+
+---
+
+## 3일차
+### 각도기
+각 `angle`에 따라 1~4 리턴: 
+1: 예각, 2: 직각, 3: 둔각, 4: 평각.
+
+```js
+
+function solution(angle) {
+
+  if (angle < 90) return 1;
+
+  else if (angle === 90) return 2;
+
+  else if (angle < 180) return 3;
+
+  else return 4;
+
+}
+```
