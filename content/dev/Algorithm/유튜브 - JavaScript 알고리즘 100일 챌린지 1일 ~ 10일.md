@@ -2,13 +2,14 @@
 tags:
   - 개발
   - 알고리즘
+  - 제주코딩베이스캠프
+date: 2025-06-21T21:53:00
 ---
 
 ### 몫 구하기
 
 정수 num1, num2가 주어질 때 몫만 반환
-
-실수 나오는 것을 방지하려 Math.floor 또는 ~~ 비트 연산 사용
+Math.floor 또는 ~~ 비트 연산 사용하여 실수가 나오지 않도록 함
 
 ```js
 function solution(num1, num2) {
@@ -21,7 +22,7 @@ function solution(num1, num2) {
 ---
 ### 두 수 비교하기
 
-num1 === num2이면 1, 아니면 -1 반환
+num1과 num2가 같으면 1, 아니면 -1 반환
 ```js
 function solution(num1, num2) {
 
@@ -111,20 +112,6 @@ function solution(numbers) {
 머쓱이네 반 친구들의 키가 담긴 정수 배열 array와 머쓱이의 키 height가 매개변수로 주어질 때, 
 머쓱이보다 키 큰 사람 수 구하기
 
-방법 1
-```js
-function solution(array, height) { 
-	let count = 0; 
-	for(let i of array) { 
-		if(i > height) {
-		 count++; 
-		 } 
-	 } 
-	 return count; 
- }
-
-```
-
 ```js
 function solution(array, height) {    
     return array.filter( v => v > height).length;
@@ -132,3 +119,25 @@ function solution(array, height) {
 ```
 
 ---
+
+### 중복된 숫자 개수
+
+정수가 담긴 배열 array와 정수 n이 매개변수로 주어질 때, 
+array에 n이 몇 개 있는 지 구하기
+
+```js
+function solution(array, n) { 
+	return array.filter( v => v === n).length; 
+}
+```
+
+---
+
+### 피자 나눠먹기(1)
+
+피자를 나눠먹을 사람의 수 n이 주어질 때, 
+모든 사람이 피자를 한 조각 이상 먹기 위해 필요한 피자의 수 구하기
+
+```js
+
+```
