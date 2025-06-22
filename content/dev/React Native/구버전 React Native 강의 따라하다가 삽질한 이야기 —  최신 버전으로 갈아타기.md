@@ -142,7 +142,7 @@ Expo로 작업할 땐 없던 버전 충돌.
     
 - 빌드 오류가 나면 node_modules, Pods, DerivedData를 다 지우고 다시 설치한다.
 
-```
+```js
 rm -rf node_modules
 npm install
 cd ios
@@ -160,7 +160,7 @@ cd ..
 
 ### **최신 실행 흐름**
 
-```
+```js
 npx @react-native-community/cli init MyApp --version latest
 
 npm install  # 또는 yarn install
