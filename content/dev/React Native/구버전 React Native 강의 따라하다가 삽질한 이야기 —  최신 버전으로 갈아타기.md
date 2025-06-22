@@ -172,7 +172,7 @@ npm install  # 또는 yarn install
 npx react-native run-ios 
 ```
 
-자동으로 Metro가 뜨지 않아 `No script URL provided.` 에러가 뜨는 경우 다른 터미널에서 아래 코드를 실행
+위 코드 입력시 자동으로 Metro가 실행되지 않아 `No script URL provided.` 에러가 뜨는 경우 다른 터미널에서 아래 코드를 실행
 
 ```bash
 yarn start
@@ -180,7 +180,7 @@ yarn start
 
  or
  
- package.json 의 android와 ios를 아래처럼 수정 후 실행
+ package.json 의 android와 ios를 아래처럼 수정 후 
  
 ```json
 "scripts": {
@@ -188,6 +188,8 @@ yarn start
 	"ios": "yarn start & react-native run-ios",
 }
 ```
+
+아래 코드를 실행 
 
 ```bash
 yarn ios
