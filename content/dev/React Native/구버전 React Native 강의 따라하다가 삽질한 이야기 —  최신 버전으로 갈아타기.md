@@ -178,14 +178,19 @@ run-ios 명령어로 JavaScript 번들 서버(Metro)가 자동으로 안 켜질 
 **이럴 땐 터미널 하나 더 열어서 아래 명령어 실행하기:**
 
 ```bash
-yarn start
+npx react-native start 
+#혹은 yarn start
 ```
 
 💡 **DevTools 주의할 점**
 
 React Native 0.70 이상부터는 console.log가 Metro 터미널에 안 찍힌다.
 대신 Metro 터미널에서 j 누르면 DevTools(Chrome 기반 디버거)가 자동으로 열림.
+따라서 아래처럼 
 
+| **터미널 1**              | **터미널 2**                |
+| ---------------------- | ------------------------ |
+| npx react-native start | npx react-native run-ios |
 
 나는 터미널 두개 쓰기 싫고 디버깅 안한다 그냥 단축키 하나로 끝내겠다 싶으면 (오...진심이야?)
  package.json 의 android와 ios를 아래처럼 수정 후 
