@@ -164,8 +164,18 @@ cd ..
 npx @react-native-community/cli init MyApp --version latest
 
 npm install  # 또는 yarn install
+```
 
+####  ios 시뮬레이터 실해
+```bash
+yarn start # 자동으로 Metro가 뜨지 않는 경우 다른 터미널에 실행
 npx react-native run-ios 
+```
+
+# 혹은
+```bash
+"android": "yarn start & react-native run-android",
+"ios": "yarn start & react-native run-ios",
 ```
 ---
 
