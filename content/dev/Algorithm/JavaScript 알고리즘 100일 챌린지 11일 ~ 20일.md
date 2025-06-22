@@ -137,17 +137,25 @@ function solution(order) {
 // .length 시 왼쪽 피연산자가 null 또는 undefined일 때 런타임 에러 발생
 	let value = order.toString().match(/[369]/g) ?? []; 
 	return value.length; 
-	// return order.toString().split('').filter(v => v == '3' || v == '6' || v == '9' ? true : false).length
+}
+```
+
+```js
+function solution(order) {
+    const s = new Set('369')
+    return order.toString().split('').filter(v => s.has(v)).length;
 }
 ```
 
 ---
-### 
+### 중복된 문자 제거
 
-
+my_string에서 중복된 문자를 제거하기
 
 ```js
-
+function solution(my_string) { 
+	return [...new Set(my_string)].join(''); 
+}
 ```
 
 ---
