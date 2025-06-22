@@ -3,7 +3,7 @@ tags:
   - 개발
   - 알고리즘
   - 제주코딩베이스캠프
-date: 2025-06-21T21:53:00
+date: 2025-06-22T21:53:00
 ---
 ##  제주코딩베이스캠프 유튜브 - JavaScript 알고리즘 100일 챌린지
 
@@ -23,7 +23,7 @@ function solution(numbers) {
 ---
 ### 문자열 뒤집기
 
-
+문자열 my_string을 거꾸로 뒤집은 문자열 구하기
 
 ```js
 function solution(my_string) { 
@@ -33,14 +33,21 @@ function solution(my_string) {
 ```
 
 ---
-### 
+### 특정 문자 제거하기
 
-
+my_string에서 letter를 제거한 문자열 구하기
 
 ```js
-
+function solution(my_string, letter) { 
+	// return my_string.replaceAll(letter, '');
+	let reg = new RegExp(letter, 'g') // 'g': 전역에서 검사 
+	return my_string.replace(reg, '') 
+}
 ```
 
+- /[1-9]/g : 1~9
+- /[a-z]/g : a~z
+- /[A-Z]/g : A~Z
 ---
 ### 
 
