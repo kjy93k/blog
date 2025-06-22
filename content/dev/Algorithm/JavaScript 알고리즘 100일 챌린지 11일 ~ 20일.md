@@ -67,10 +67,17 @@ ex. 문자열에서 1, 2, 3을 지우고 싶을때
 - s1과 s2의 원소는 **알파벳 소문자로만 이루어져 있습니다**
 - s1과 s2는 **각각 중복된 원소를 갖지 않습니다.**
 
-1. s1의 원소가 s2에 포함되어 있으면 filter해주고 배열의 길이를 리턴
+1. filter로 구히가
 ```js
 function solution(s1, s2) { 
 	return s1.filter(v => s2.includes(v)).length; }
+```
+
+2. 교집합으로 구하기
+```js
+function solution(s1, s2) { 
+	return s1.length + s2.length - new Set([...s1, ...s2]).size 
+} 
 ```
 
 ---
