@@ -166,17 +166,33 @@ npx @react-native-community/cli init MyApp --version latest
 npm install  # 또는 yarn install
 ```
 
-####  ios 시뮬레이터 실해
+####  ios 시뮬레이터 실행
+
 ```bash
-yarn start # 자동으로 Metro가 뜨지 않는 경우 다른 터미널에 실행
 npx react-native run-ios 
 ```
 
-# 혹은
+자동으로 Metro가 뜨지 않아 `No script URL provided.` 에러가 뜨는 경우 다른 터미널에서 아래 코드를 실행
+
 ```bash
-"android": "yarn start & react-native run-android",
-"ios": "yarn start & react-native run-ios",
+yarn start
 ```
+
+ or
+ 
+ package.json 의 android와 ios를 아래처럼 수정 후 실행
+ 
+```json
+"scripts": {
+	"android": "yarn start & react-native run-android",
+	"ios": "yarn start & react-native run-ios",
+}
+```
+
+```bash
+yarn ios
+```
+
 ---
 
 ### **앞으로의 다짐**
