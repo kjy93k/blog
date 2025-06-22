@@ -217,7 +217,61 @@ yarn ios
 DevTools는 npx react-devtools로 따로 켜야 한다는 거만 기억해두기.
 
 ---
+### **+ 안드로이드 JDK 버전 삽질**
 
+  
+
+안드로이드로 실행해 보니 뭔가 또 꼬인 모양이다.
+
+
+React Native 최신 빌드는 Java 17 이상을 요구하는데,
+
+강의 환경에는 Zulu 11만 설치되어 있었다.
+
+어렴풋하게 11로 설치한 기억이 스쳐간다...✨
+
+  
+
+Gradle 빌드는 계속 실패:
+
+- Android Gradle plugin requires Java 17 to run
+    
+- JAVA_HOME is set to an invalid directory
+    
+
+  
+
+처음엔 17로 맞추려다가, 어차피 최신 JDK가 21이라 그냥 최신으로 맞춰버렸다.
+
+  
+
+그래서:
+
+- Zulu 11 싹 지우고 (brew uninstall --cask zulu@11)
+    
+- Zulu 21 새로 설치 (brew install --cask zulu@21)
+    
+- JAVA_HOME을 새로 export
+  
+그래도 꼬이면:
+
+```bash
+unset JAVA_HOME
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+java -version  # 꼭 21.x.x 확인
+```
+
+클린 빌드:
+```bash
+cd android
+./gradlew clean
+cd ..
+npx react-native run-android
+```
+
+이렇게 하니까 해결됐다.
+
+---
 ### **앞으로의 다짐**
 
   
