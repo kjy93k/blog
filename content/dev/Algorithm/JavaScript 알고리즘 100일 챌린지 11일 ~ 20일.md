@@ -18,7 +18,7 @@ function solution(numbers) {
 }
 ```
 
-사이트 추천: https://generatedata.com/
+사이트 추천: [쉽고 편하게 Mock 데이터 생성](https://generatedata.com/)
 
 ---
 ### 
