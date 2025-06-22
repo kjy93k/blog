@@ -226,9 +226,7 @@ DevTools는 npx react-devtools로 따로 켜야 한다는 거만 기억해두기
 
 React Native 최신 빌드는 Java 17 이상을 요구하는데,
 
-강의 환경에는 Zulu 11만 설치되어 있었다.
-
-어렴풋하게 11로 설치한 기억이 스쳐간다...✨
+강의 환경을 따라 Zulu 11를 설치한 기억이 어렴풋하게 스쳐간다...✨
 
   
 
@@ -237,13 +235,10 @@ Gradle 빌드는 계속 실패:
 - Android Gradle plugin requires Java 17 to run
     
 - JAVA_HOME is set to an invalid directory
-    
-
   
 
-처음엔 17로 맞추려다가, 어차피 최신 JDK가 21이라 그냥 최신으로 맞춰버렸다.
+처음엔 Java 17로 맞추려다가, 어차피 최신 JDK가 21이라 그냥 최신으로 맞춰버렸다.
 
-  
 
 그래서:
 
