@@ -118,13 +118,19 @@ function solution(numbers, direction) {
 - a는 0, b는 1, c는 2, ..., j는 9
 
 ```js
-
+function solution(age) { 
+	let chr = 'abcdefghij' 
+	return Array.from(age.toString()).map(v =>  chr[v]).join('') 
+	}
 ```
 
 ---
-### 
+### 369게임
 
+머쓱이가 말해야하는 숫자 order가 매개변수로 주어질 때, 
+머쓱이가 쳐야할 박수 횟수 구하기
 
+3,6,9 개수 구하기
 
 ```js
 
