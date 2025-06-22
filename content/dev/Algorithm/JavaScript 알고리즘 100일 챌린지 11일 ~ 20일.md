@@ -21,12 +21,15 @@ function solution(numbers) {
 사이트 추천: [쉽고 편하게 Mock 데이터 생성](https://generatedata.com/)
 
 ---
-### 
+### 문자열 뒤집기
 
 
 
 ```js
-
+function solution(my_string) { 
+	//return my_string.split('').reverse().join('');
+	return Array.from(my_string).reverse().join(''); 
+}
 ```
 
 ---
