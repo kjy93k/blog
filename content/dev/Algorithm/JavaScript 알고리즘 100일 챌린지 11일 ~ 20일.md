@@ -45,9 +45,18 @@ function solution(my_string, letter) {
 }
 ```
 
+정규 표현식을 쓰면 좋은점
+ex. 문자열에서 1, 2, 3을 지우고 싶을때
+ 
+```js
+'BCBdbe123094dr12of1j423'.replace(/[123]/g, '') 
+//'BCBdbe094drofj4'
+```
+
 - /[1-9]/g : 1~9
 - /[a-z]/g : a~z
 - /[A-Z]/g : A~Z
+
 ---
 ### 
 
