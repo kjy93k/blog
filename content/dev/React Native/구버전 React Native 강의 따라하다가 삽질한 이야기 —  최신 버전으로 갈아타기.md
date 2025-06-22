@@ -98,22 +98,19 @@ Expo로 작업할 땐 없던 버전 충돌.
     - Logger 오류
         
     - xcconfig 파일 누락
-        
     
 2. CLI 구조 변경
     
     - npx react-native init → 더 이상 사용하지 않음
         
     - npx @react-native-community/cli init로 대체
-        
     
 3. Metro Bundler 단축키 변경
     
-    - 예전엔 yarn start 후 i 키 실행
+    - 예전엔 `yarn start` 후  `i`  키로 시뮬레이터  실행
         
-    - 현재는 npx react-native run-ios 필요
-        
-    
+    - 현재는 `npx react-native run-ios` 로 실행
+  
 
 ---
 
@@ -130,7 +127,7 @@ Expo로 작업할 땐 없던 버전 충돌.
 - CocoaPods: 최신 (gem install cocoapods)
     
 - React Native: npx @react-native-community/cli init
-    
+
 
 ---
 
@@ -142,7 +139,7 @@ Expo로 작업할 땐 없던 버전 충돌.
     
 - 빌드 오류가 나면 node_modules, Pods, DerivedData를 다 지우고 다시 설치한다.
 
-```js
+```bash
 rm -rf node_modules
 npm install
 cd ios
@@ -160,7 +157,7 @@ cd ..
 
 ### **최신 실행 흐름**
 
-```js
+```bash
 npx @react-native-community/cli init MyApp --version latest
 
 npm install  # 또는 yarn install
