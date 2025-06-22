@@ -111,9 +111,11 @@ function solution(numbers, direction) {
 ```
 
 ---
-### 
+### 외계행성의 나이
 
+나이 age가 매개변수로 주어질 때 PROGRAMMER-962식 나이를 구하기
 
+- a는 0, b는 1, c는 2, ..., j는 9
 
 ```js
 
