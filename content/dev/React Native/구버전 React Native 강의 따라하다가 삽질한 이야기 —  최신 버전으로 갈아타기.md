@@ -193,7 +193,7 @@ React Native 0.70 이상부터는 console.log가 Metro 터미널에 안 찍힌�
 이렇게 터미널 두 개 나눠서 돌리는 게 제일 깔끔하고 안정적이다.
 
 
-**BUT**
+**+**
 
 나는 터미널 두개 쓰기 싫고 디버깅 안한다.
 그냥 단축키 하나로 끝내겠다 싶으면 (오...진짜?)
@@ -212,6 +212,9 @@ React Native 0.70 이상부터는 console.log가 Metro 터미널에 안 찍힌�
 ```bash
 yarn ios
 ```
+
+단, 이렇게 하면 j 같은 단축키는 안 먹히니까
+DevTools는 npx react-devtools로 따로 켜야 한다는 거만 기억해두기.
 
 ---
 
