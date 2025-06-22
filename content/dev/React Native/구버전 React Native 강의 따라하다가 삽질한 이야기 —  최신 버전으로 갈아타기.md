@@ -108,6 +108,7 @@ Expo로 작업할 땐 없던 버전 충돌.
 3. Metro Bundler 단축키 변경
     
     - 예전엔 `yarn start` 후  `i`  키로 시뮬레이터  실행
+     (현재는 Key commands available에서 i 키가 사라짐)
         
     - 현재는 `npx react-native run-ios` 로 실행
   
@@ -146,7 +147,9 @@ cd ios
 
 // 기존 Pod 의존성 폴더 제거, 고정된 Pod 버전 정보 제거, 이전 Xcode 빌드 캐시 제거 
 rm -rf Pods Podfile.lock build  
-pod install --repo-update // pod install은 iOS 네이티브 의존성을 맞출 때만 필요
+
+pod install --repo-update 
+// pod install은 iOS 네이티브 의존성을 맞출 때만 필요
 
 cd ..
 ```
