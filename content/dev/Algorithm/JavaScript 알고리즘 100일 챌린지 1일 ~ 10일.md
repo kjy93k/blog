@@ -25,6 +25,7 @@ function solution(num1, num2) {
 ### 두 수 비교하기
 
 num1과 num2가 같으면 1, 아니면 -1 반환
+
 ```js
 function solution(num1, num2) {
 
@@ -49,6 +50,7 @@ function solution(age) {
 ---
 
 ### 각도기
+
 각도 angle에 따라 1(예각), 2(직각), 3(둔각), 4(평각) 반환
 
 ```js
@@ -90,6 +92,7 @@ function solution(n, k) {
 ### 짝수의 합
 
 1부터 n까지 짝수만 더하기
+
 ```js
 function solution(n) { 
 	return Array(n).fill().map((_, index) => index + 1).filter(v => v % 2 === 0).reduce((a, c) => a + c, 0);
