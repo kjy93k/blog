@@ -130,10 +130,15 @@ function solution(age) {
 머쓱이가 말해야하는 숫자 order가 매개변수로 주어질 때, 
 머쓱이가 쳐야할 박수 횟수 구하기
 
-3,6,9 개수 구하기
+3, 6, 9 개수 구하기
 
 ```js
-
+function solution(order) { 
+// .length 시 왼쪽 피연산자가 null 또는 undefined일 때 런타임 에러 발생
+	let value = order.toString().match(/[369]/g) ?? []; 
+	return value.length; 
+	// return order.toString().split('').filter(v => v == '3' || v == '6' || v == '9' ? true : false).length
+}
 ```
 
 ---
