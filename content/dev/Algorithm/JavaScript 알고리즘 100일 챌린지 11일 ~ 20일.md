@@ -81,21 +81,33 @@ function solution(s1, s2) {
 ```
 
 ---
-### 
+### 가위 바위 보
 
 
 
 ```js
-
+function solution(rsp) { 
+	let answer = {'0':'5', '2':'0', '5':'2'};
+	return [...rsp].map(v=>answer[v]).join(''); 
+}
 ```
 
 ---
-### 
+### 배열 회전시키기
 
 
 
 ```js
-
+function solution(numbers, direction) { 
+	if(direction === 'right'){
+	 // numbers.unshift(numbers.pop()); 
+	 numbers = [numbers.pop(), ...numbers];
+	} else { 
+		// numbers.push(numbers.shift()); 
+		numbers = [...numbers.slice(1), numbers.shift()];
+	} 
+	return numbers 
+}
 ```
 
 ---
