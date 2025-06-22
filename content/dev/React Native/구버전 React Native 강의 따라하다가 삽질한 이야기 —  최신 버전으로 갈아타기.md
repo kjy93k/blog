@@ -172,13 +172,26 @@ npm install  # 또는 yarn install
 npx react-native run-ios 
 ```
 
-위 코드 입력시 자동으로 Metro가 실행되지 않아 `No script URL provided.` 에러가 뜨는 경우 다른 터미널에서 아래 코드를 실행
+⚡️  **No script URL provided. 에러가 뜨는 경우**
+
+run-ios 명령어로 JavaScript 번들 서버(Metro)가 자동으로 켜지지 않는 경우
+**다른 터미널을 새로 열어 아래 명령어 입력하기**
 
 ```bash
 yarn start
 ```
 
- or
+  **DevTools 주의할 점**
+
+  
+
+React Native 0.70 이상부터는 console.log가 Metro 터미널에 안 찍힌다.
+
+대신 Metro 터미널에서 j 누르면 DevTools(Chrome 기반 디버거)가 자동으로 열림.
+
+  
+
+근데 이게 **터미널 두 개로 켜져 있어야** 동작함. or
  
  package.json 의 android와 ios를 아래처럼 수정 후 
  
