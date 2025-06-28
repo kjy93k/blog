@@ -59,8 +59,55 @@ rn_maps_path = '../node_modules/react-native-maps'
 pod 'react-native-maps/Google', :path => rn_maps_path
 ```
 
-삽질하면
+삽질하면서 아래 코드들도 추가했다(문서엔 없어서 안적어도 될 수도...?)
 그리고 상단에 이걸 추가:
-```
+
+```ruby
 project '프로젝트명.xcodeproj'
+```
+
+중간에는 아래 줄도 추가했다:
+
+```ruby
+pod 'GoogleMaps'
+pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+```
+
+추가로 platform :ios, '13.0' 이런 것도 쓰라고 했는데,
+
+오히려 이 줄 때문에 오류가 났다. 그냥 안 고치고 넘어갔는데도 잘 돌아갔다.
+
+(이 부분은 환경에 따라 케바케인 듯.)
+
+---
+
+### **Android는 비교적 단순**
+
+  
+
+Android는 아래 항목들을 AndroidManifest.xml에 넣으면 끝이다.
+
+```xml
+<application
+... 
+	android:useCleartextTraffic="true"
+	<meta-data
+		android:name="com.google.android.geo.API_KEY"
+	  android:value="YOUR_GOOGLE_MAPS_API_KEY"/>
+...
+</application>
+```
+
+---
+
+### 어서와 이런 오류는 처음이지? ### **Unimplemented component:** 
+
+### **<RNMapsMapView>**
+
+그리고 빌드.
+
+그런데 갑자기 이런 에러가 터졌다:
+
+```
+Unimplemented component: <RNMapsMapView>
 ```
