@@ -100,14 +100,30 @@ Android는 아래 항목들을 AndroidManifest.xml에 넣으면 끝이다.
 
 ---
 
-### 어서와 이런 오류는 처음이지? ### **Unimplemented component:** 
-
-### **<RNMapsMapView>**
+### 어서와 이런 오류는 처음이지? Unimplemented component: \<RNMapsMapView\>
 
 그리고 빌드.
-
 그런데 갑자기 이런 에러가 터졌다:
 
 ```
 Unimplemented component: <RNMapsMapView>
 ```
+
+여기서부터 지옥이 시작됐다.
+
+대체 왜 안 되는지 모르겠어서 구글링, 구글링, 또 구글링.
+
+  
+그러다가 GitHub 이슈에서 이런 문구를 발견했다:
+
+  
+> the issue "react-native": "0.80.0" if downgrade to "react-native": "0.79.2" it works fine.
+
+오 선생님 너무 감사합니다
+맞아요 제
+ "react-native": "0.80.0"에서는 안 되고
+ "react-native": "0.79.2"로 낮추면 된다.
+
+  
+
+그래서 바로 버전을 낮췄다:
