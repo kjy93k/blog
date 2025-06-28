@@ -120,10 +120,81 @@ Unimplemented component: <RNMapsMapView>
 > the issue "react-native": "0.80.0" if downgrade to "react-native": "0.79.2" it works fine.
 
 오 선생님 너무 감사합니다
-맞아요 제
+맞아요 제 버전에 0.80입니다 ㅠㅠ 맞아요 맞아요ㅠㅠ
+
  "react-native": "0.80.0"에서는 안 되고
  "react-native": "0.79.2"로 낮추면 된다.
 
   
 
 그래서 바로 버전을 낮췄다:
+
+```bash
+yarn add react-native@0.79.2
+```
+
+### **또 오류… 프로젝트 구조가 다르다?**
+
+  
+
+React Native 0.80 기준으로 만들어진 프로젝트였기 때문에
+
+0.79.2로 바꾸자마자 오류가 잔뜩 터졌다.
+
+의존성, Pod 캐시를 다 지우고 다시 설치해도 여전히... 안된다.
+
+React Native 0.80부터는 npx react-native init이 아닌
+npx @react-native-community/cli init 방식으로 프로젝트가 생성된다.
+
+그렇다면 android/, ios/ 폴더 내부 구조에도 차이가 있을 수 있다...
+
+---
+
+### **ios, android 폴더를 새 프로젝트로 교체**
+
+  
+
+그래서 아예 0.79.2 기반으로 새 프로젝트를 만들고
+
+그 안에 있는 ios/, android/ 폴더를 기존 프로젝트에 덮어씌웠다.
+
+  
+
+이때 **주의할 점**은 프로젝트명이 다르면 내부 설정이 꼬일 수 있다는 점이다.
+
+Xcode 프로젝트 이름 등 경로가 바뀌지 않게 주의하면서 갈아끼웠다.
+
+---
+
+### **그런데 또 오류… React 버전이 문제였다**
+
+  
+
+이번엔 이런 에러가 떴다:
+
+```
+react-native-renderer는 19.0인데,
+react는 19.1.0이다
+```
+
+React Native가 내부적으로 사용하는 renderer 버전과
+
+내 프로젝트에 설치된 React 버전이 맞지 않아서 발생한 문제였다.
+
+  
+
+그래서 React 버전을 19.0으로 낮췄다.
+
+제발...!!!!!
+
+```
+npx pod-install ios
+yarn ios
+```
+---
+
+### **그리고 마침내… 구글맵 등장**
+
+드디어… 드디어 구글맵이 나왔다.
+
+길고도 길었던 버전 지옥의 끝이었다.
