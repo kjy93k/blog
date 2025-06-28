@@ -110,7 +110,7 @@ Expo로 작업할 땐 없던 버전 충돌.
     - 예전엔 `yarn start` 후  `i`  키로 시뮬레이터  실행
      (현재는 Key commands available에서 i 키가 사라짐)
         
-    - 현재는 `npx react-native run-ios` 로 실행
+    - 현재는 `npx react-native run-ios` (또는 `yarn i`)로 실행
   
 
 ---
