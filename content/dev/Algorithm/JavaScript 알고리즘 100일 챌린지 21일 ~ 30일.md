@@ -23,7 +23,8 @@ function solution(n) {
 		i += 1;
 		factorial *= i;
 	} 
-	return i-  1; // f === n일경우도 실행되기때문에 i-1리턴
+	// factorial === n일경우도 실행되기때문에 i-1 리턴
+	return i-  1; 
 }
 ```
 
