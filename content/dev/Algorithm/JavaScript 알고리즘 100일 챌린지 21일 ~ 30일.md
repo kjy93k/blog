@@ -223,17 +223,25 @@ function solution(spell, dic) {
 
 ### 문자열 밀기 
 문자열 A를 오른쪽으로 반복해서 밀어 B가 될 수 있다면 최소 횟수를, 안 되면 -1을 return
+
 ```
-"hello" -> "ohell" : 1 
-"hello" -> "lohel" : 2 
-"hello" -> "llohe" : 3
+hello -> ohell : 1 
+hello -> lohel : 2 
+hello -> llohe : 3
 ```
 
 A * 2 에서 B의 index를 찾고 A.length - B의 index를 비교해서 구할 수도 있지만 
-B * 2에서 A의 index를 구할 수도 있다 
-
 ```
-hellohello에서 ohell => 4
+hellohello -> ohell : 4
+hellohello -> lohel : 3
+hellohello -> llohe : 2
+```
+
+B * 2에서 A의 index를 구할 수도 있다 
+```
+ohellohell -> hello : 1
+lohellohel -> hello : 2
+llohellohe -> hello : 3
 ```
 
 ```js
@@ -246,8 +254,8 @@ function solution(A, B) {
 
 ---
 
-### 
-.
+### 컨트롤제트
+숫자와 "Z"가 공백으로 구분되어 담긴 문자열이 s로 주어질때,  숫자를 순서대로 더하되, “Z”가 나오면 직전 숫자를 제외한 최종 합 구하기
 
 
 ```js
