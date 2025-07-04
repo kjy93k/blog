@@ -325,7 +325,7 @@ function solution(s) {
 			result.pop(); 
 		} else { 
 			result.push(+i); 
-			if (+아i === 0) {
+			if (+i === 0) {
 				result.push
 			} 
 		} 
