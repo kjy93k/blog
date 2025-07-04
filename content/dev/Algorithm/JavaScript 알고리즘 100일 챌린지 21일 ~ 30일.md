@@ -284,8 +284,35 @@ function solution(s) {
 			result.push(+i); 
 		} 
 	} 
-	return result.reduce((a,c) => a + c, 0) 
+	return result.reduce((a, c) => a + c, 0) 
 }
 ```
 
+#### 비슷한 문제 풀 때 팁
 
+```
+"110Z3"
+```
+
+이렇게 주어지고 1~10까지의 숫자를 판단해야 되는 경우
+1. 정규식으로 1~10를 판단해 주거나
+2. 1 다음 0이 나오면 10이라는 것을 인식해 주면 됨
+
+```js
+function solution(s) { 
+	s = s.split(' '); 
+	let result = []; 
+	for(let i of s) { 
+		if(i === 'Z') { 
+			result.pop(); 
+		} else { 
+			result.push(+i); 
+			if (i === 0) {
+				result.push
+			} 
+		} 
+	} 
+	return result.reduce((a, c) => a + c, 0) 
+}
+```
+현재값이 1이고 다음값이 0일 경우 10으로 교체
