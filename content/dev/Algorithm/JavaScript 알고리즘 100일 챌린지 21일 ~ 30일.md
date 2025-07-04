@@ -119,6 +119,7 @@ function solution(s) {
 function solution(s) {    
 	return [...s]
 	.filter(char => s.match(new RegExp(char, 'g')).length === 1)
+	// 숫자를 포함하지 않은 문자열일때만 sort() 
 	.sort()
 	.join('');
 }
@@ -127,15 +128,26 @@ function solution(s) {
 
 ---
 
-### 
-.
+### 잘라서 배열로 저장하기
+my_str을 길이 n씩 잘라서 저장한 배열 구하기
 
 
 ```js
-
+// 정규식
+function solution(my_str, n) {
+    return my_str.match(new RegExp(`.{1,${n}}`, 'g'));
+}
 ```
 
-
+```js
+function solution(my_str, n) {
+    let result = [];
+    for(let i=0; i<my_str.length; i+=n){
+        result.push(my_str.slice(i, i+n))
+    }
+    return result
+}
+```
 
 ---
 
