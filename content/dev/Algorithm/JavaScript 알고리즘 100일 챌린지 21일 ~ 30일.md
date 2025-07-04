@@ -150,27 +150,63 @@ function solution(my_str, n) {
 
 ---
 
-### 
-.
+### 진료순서 정하기
+정수 배열 emergency가 매개변수로 주어질 때 
+응급도가 높은 순서대로 진료 순서 배열을 구하기
 
 
 ```js
-
+function solution(emergency) { 
+	let 응급순서 = emergency.slice().sort((a, b) => b - a);
+	return emergency.map(v => 응급순서.indexOf(v) + 1);
+}
 ```
 
 
 
 ---
 
-### 
-.
+### 영어가 싫어요
+문자열 numbers가 매개변수로 주어질 때,  numbers를 정수로 바꾸기
 
 
 ```js
-
+function solution(numbers) {
+	return parseInt(numbers
+			.replaceAll('zero', '0')
+			.replaceAll('one', '1')
+			.replaceAll('two', '2')
+			.replaceAll('three', '3')
+			.replaceAll('four', '4')
+			.replaceAll('five', '5')
+			.replaceAll('six', '6')
+			.replaceAll('seven', '7')
+			.replaceAll('eight', '8')
+			.replaceAll('nine', '9'));
+}
 ```
 
-
+```
+// 방법2_정규식
+function solution(numbers) {
+    const obj = {
+        zero: 0,
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4,
+        five: 5,
+        six: 6,
+        seven: 7,
+        eight: 8,
+        nine: 9,
+    }
+    
+    return +numbers.replace(/zero|one|two|three|four|five|six|seven|eight|nine/g, (v)=>{
+        return obj[v]
+    })
+}
+```
 
 ---
 
