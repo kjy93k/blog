@@ -221,12 +221,19 @@ function solution(spell, dic) {
 
 ---
 
-### 
-.
+### 문자열 밀기 
+문자열 A를 오른쪽으로 반복해서 밀어 B가 될 수 있다면 최소 횟수를, 안 되면 -1을 return
 
+"hello" "ohell" : 1 
+"hello" "lohel" : 2 
+"hello" "llohe" : 3
+
+ohellohell
 
 ```js
-
+function solution(A, B) { 
+	return (B + B).indexOf(A); 
+}
 ```
 
 
