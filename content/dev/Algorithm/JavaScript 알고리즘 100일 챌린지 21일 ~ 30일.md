@@ -39,15 +39,18 @@ ex)k = 1 일때 10에서 1개, 11에서 2개, 12에서 1개, 13에서 1개 총 6
 
 ```js
 function solution(i, j, k) {
-    let s = '';
-    for(i; i <= j; i++) {
-        s+=i
-    }
-    
-    return s // 12345678910111213
-    .split(k) //["","23456789","0","","","2","3"]
-    .length // 7
-    .length - 1; // 6
+	//i = 1, j = 13, k = 1
+	let s = '';
+	for(i; i <= j; i++) {
+			s+=i
+	}
+	
+	return s
+	// 12345678910111213
+	.split(k)
+	//["","23456789","0","","","2","3"] 
+	.length // 7
+	.length - 1; // 6
 }
 ```
 
@@ -55,8 +58,10 @@ function solution(i, j, k) {
 
 ```js
 function solution(i, j, k) {
-		// 1부터 시작해서 13에서 끝내야 됨 [1, ..., 13]
-	return Array(j - i + 1).fill(i) // [1, ..., 1]
+	//i = 1, j = 13, k = 1
+	return Array(j - i + 1)
+	// i부터 j까지 갯수의 empty Array 생성
+	.fill(i) // [1, ..., 1]
 	.map((v, idx) => v + idx) // [1, ..., 13]
 	.join('') // "12345678910111213"
 	.split(k).length - 1; // 6
