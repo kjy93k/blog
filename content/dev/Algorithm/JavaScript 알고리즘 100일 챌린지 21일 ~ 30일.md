@@ -82,7 +82,8 @@ array에 들어있는 정수 중 n과 가장 가까운 수 구하기
 function solution(array, n) { 
 	let min = Infinity;
 	let result = 0;
-	for (let i of array.sort()) { // 
+	for (let i of array.sort()) { 
+	// 
 	if (Math.abs(n - i) < min) { 
 		 min = Math.abs(n - i) result = i; 
 		}
