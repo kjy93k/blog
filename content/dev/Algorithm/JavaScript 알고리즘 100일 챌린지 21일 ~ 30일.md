@@ -133,19 +133,18 @@ my_str을 길이 n씩 잘라서 저장한 배열 구하기
 
 
 ```js
-// 정규식
 function solution(my_str, n) {
-    return my_str.match(new RegExp(`.{1,${n}}`, 'g'));
+	return my_str.match(new RegExp(`.{1,${n}}`, 'g'));
 }
 ```
 
 ```js
 function solution(my_str, n) {
-    let result = [];
-    for(let i=0; i<my_str.length; i+=n){
-        result.push(my_str.slice(i, i+n))
-    }
-    return result
+	let result = [];
+	for(let i = 0; i < my_str.length; i += n) {
+		result.push(my_str.slice(i, i + n))
+	}
+	return result;
 }
 ```
 
