@@ -223,12 +223,18 @@ function solution(spell, dic) {
 
 ### 문자열 밀기 
 문자열 A를 오른쪽으로 반복해서 밀어 B가 될 수 있다면 최소 횟수를, 안 되면 -1을 return
+```
+"hello" -> "ohell" : 1 
+"hello" -> "lohel" : 2 
+"hello" -> "llohe" : 3
+```
 
-"hello" "ohell" : 1 
-"hello" "lohel" : 2 
-"hello" "llohe" : 3
+A * 2 에서 B의 index를 찾고 A.length - B의 index를 비교해서 구할 수도 있지만 
+B * 2에서 A의 index를 구할 수도 있다 
 
-ohellohell
+```
+hellohello에서 ohell => 4
+```
 
 ```js
 function solution(A, B) { 
