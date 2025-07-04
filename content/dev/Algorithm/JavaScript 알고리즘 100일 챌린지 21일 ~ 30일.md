@@ -299,6 +299,24 @@ function solution(s) {
 2. 1 다음 0이 나오면 10이라는 것을 인식해 주면 됨
 
 ```js
+function solution(s) {
+	s = s.match(/10|[1-9]|Z/g);
+	let result = [];
+	
+	for (let i of s) {
+		if (i === 'Z') {
+			result.pop();
+		} else {
+			result.push(i);
+		}
+	}
+
+	return result.reduce((a, c) => a + c, 0);
+}
+```
+
+
+```js
 function solution(s) { 
 	s = s.split(' '); 
 	let result = []; 
@@ -307,7 +325,7 @@ function solution(s) {
 			result.pop(); 
 		} else { 
 			result.push(+i); 
-			if (i === 0) {
+			if (+아i === 0) {
 				result.push
 			} 
 		} 
