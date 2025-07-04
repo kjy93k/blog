@@ -105,9 +105,24 @@ s에서 한 번만 등장하는 문자를 구하고 사전 순으로 정�
 
 
 ```js
-
+// split
+function solution(s) {
+	return [...s]
+	.filter(char => s.split(char).length === 2)
+	.sort()
+	.join('');
+}
 ```
 
+```js
+// 정규표현식, match
+function solution(s) {    
+	return [...s]
+	.filter(char => s.match(new RegExp(char, 'g')).length === 1)
+	.sort()
+	.join('');
+}
+```
 
 
 ---
