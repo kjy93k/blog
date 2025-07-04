@@ -172,50 +172,49 @@ function solution(emergency) {
 
 ```js
 function solution(numbers) {
-	return parseInt(numbers
-			.replaceAll('zero', '0')
-			.replaceAll('one', '1')
-			.replaceAll('two', '2')
-			.replaceAll('three', '3')
-			.replaceAll('four', '4')
-			.replaceAll('five', '5')
-			.replaceAll('six', '6')
-			.replaceAll('seven', '7')
-			.replaceAll('eight', '8')
-			.replaceAll('nine', '9'));
+	return +numbers
+		.replaceAll('zero', '0')
+		.replaceAll('one', '1')
+		.replaceAll('two', '2')
+		.replaceAll('three', '3')
+		.replaceAll('four', '4')
+		.replaceAll('five', '5')
+		.replaceAll('six', '6')
+		.replaceAll('seven', '7')
+		.replaceAll('eight', '8')
+		.replaceAll('nine', '9');
 }
 ```
 
-```
-// 방법2_정규식
+```js
 function solution(numbers) {
-    const obj = {
-        zero: 0,
-        one: 1,
-        two: 2,
-        three: 3,
-        four: 4,
-        five: 5,
-        six: 6,
-        seven: 7,
-        eight: 8,
-        nine: 9,
-    }
-    
-    return +numbers.replace(/zero|one|two|three|four|five|six|seven|eight|nine/g, (v)=>{
-        return obj[v]
-    })
+	const obj = {
+		zero: 0,
+		one: 1,
+		two: 2,
+		three: 3,
+		four: 4,
+		five: 5,
+		six: 6,
+		seven: 7,
+		eight: 8,
+		nine: 9,
+	}
+	
+	return +numbers.replace(/zero|one|two|three|four|five|six|seven|eight|nine/g, (v)=> obj[v])
 }
 ```
 
 ---
 
-### 
-.
+### 외계어 사전
+알파벳이 담긴 배열 spell과 외계어 사전 dic이 매개변수로 주어지고, spell에 담긴 알파벳을 한번씩만 모두 사용한 단어가 dic에 존재한다면 1, 존재하지 않는다면 2를 return
 
 
 ```js
-
+function solution(spell, dic) { 
+	return dic.some((v) => [...v].sort().toString() === [...spell].sort().toString()) ? 1 : 2; 
+}
 ```
 
 
