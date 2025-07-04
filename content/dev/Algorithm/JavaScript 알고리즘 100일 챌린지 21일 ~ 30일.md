@@ -318,16 +318,17 @@ function solution(s) {
 
 ```js
 function solution(s) { 
-	s = s.split(' '); 
+	s = s.split(''); 
 	let result = []; 
 	for(let i of s) { 
 		if(i === 'Z') { 
 			result.pop(); 
-		} else { 
+		} else if (+i === 0) {
+		result.pop(); 
+		result.push(+i); 
+		}	else { 
 			result.push(+i); 
-			if (+i === 0) {
-				result.push
-			} 
+			 
 		} 
 	} 
 	return result.reduce((a, c) => a + c, 0) 
