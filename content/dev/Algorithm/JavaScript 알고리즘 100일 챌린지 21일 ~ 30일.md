@@ -307,7 +307,7 @@ function solution(s) {
 		if (i === 'Z') {
 			result.pop();
 		} else {
-			result.push(i);
+			result.push(+i);
 		}
 	}
 
@@ -323,10 +323,11 @@ function solution(s) {
 	for(let i of s) { 
 		if(i === 'Z') { 
 			result.pop(); 
-		} else if (+i === 0) {
-		result.pop(); 
-		result.push(+i); 
 		}	else { 
+			if (+i === 0) {
+			result.pop(); 
+			result.push(10); 
+			}
 			result.push(+i); 
 			 
 		} 
