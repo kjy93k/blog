@@ -24,7 +24,7 @@ function solution(n) {
 		factorial *= i;
 	} 
 	// factorial === n일경우도 실행되기때문에 i-1 리턴
-	return i-  1; 
+	return i -  1; 
 }
 ```
 
@@ -32,8 +32,9 @@ function solution(n) {
 
 ---
 
-### 
-.
+### k의 개수
+정수 i, j, k가 매개변수로 주어질 때, i부터 j까지 k가 몇 번 등장하는지 구하기
+ex)k = 1 일때 10에서 1개, 11에서 2개, 12에서 1개, 13에서 1개 총 6번
 
 
 ```js
