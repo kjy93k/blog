@@ -250,7 +250,22 @@ function solution(A, B) {
 }
 ```
 
+#### 좌표 이동 관련 추가 팁
 
+```
+[0, 0, 0, 0]
+[0, 1, 0, 0] // 2번째 줄 1번 인덱스의 1을
+[0, 0, 0, 0] // 3번째 줄 1번 인덱스의 1로
+[0, 0, 0, 0]
+```
+
+이런 경우 1차원으로 만든 후 index의 값을 찾아 바꿔주면 됨.
+
+```
+[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+```
+
+나 자신을 0으로 만들고,  4칸 이후에 있는 index값을 1로 바꿔주면 됨
 
 ---
 
@@ -259,9 +274,18 @@ function solution(A, B) {
 
 
 ```js
-
+function solution(s) { 
+	s = s.split(' '); 
+	let result = []; 
+	for(let i of s) { 
+		if(i === 'Z') { 
+			result.pop(); 
+		} else { 
+			result.push(+i); 
+		} 
+	} 
+	return result.reduce((a,c) => a + c, 0) 
+}
 ```
 
 
-
----
