@@ -64,19 +64,31 @@ function solution(i, j, k) {
 	.fill(i) // [1, ..., 1]
 	.map((v, idx) => v + idx) // [1, ..., 13]
 	.join('') // "12345678910111213"
-	.split(k).length - 1; // 6
+	.split(k) // filter or split
+	.length - 1; // 6
 }
 ```
 
 
 ---
 
-### 
-.
+### 가까운 수
+정수 배열 array와 정수 n이 매개변수로 주어질 때, 
+array에 들어있는 정수 중 n과 가장 가까운 수 구하기
 
+단, 가장 가까운 수가 여러개일 경우 더 작은 수 return
 
 ```js
-
+function solution(array, n) { 
+	let min = Infinity;
+	let result = 0;
+	for (let i of array.sort()) { // 
+	if (Math.abs(n - i) < min) { 
+		 min = Math.abs(n - i) result = i; 
+		}
+	}
+	return result; 
+ }
 ```
 
 
