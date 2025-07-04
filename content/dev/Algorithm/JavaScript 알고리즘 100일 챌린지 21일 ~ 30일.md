@@ -82,10 +82,14 @@ array에 들어있는 정수 중 n과 가장 가까운 수 구하기
 function solution(array, n) { 
 	let minDiff = Infinity;
 	let result = 0;
-	for (let i of array.sort()) { 
-	// 
+	
+	array.sort((a, b) => a - b);
+	
+	for (let i of array) { 
+	// 음수는 거리 비교를 할 수 없기때문에 절대값으로 구해야 함
 	if (Math.abs(n - i) < minDiff) { 
-		 minDiff = Math.abs(n - i) result = i; 
+		 minDiff = Math.abs(n - i); 
+		 result = i; 
 		}
 	}
 	return result; 
@@ -96,8 +100,8 @@ function solution(array, n) {
 
 ---
 
-### 
-.
+### 한번만 등장한 문자
+s에서 한 번만 등장하는 문자를 구하고 사전 순으로 정렬하기
 
 
 ```js
