@@ -58,7 +58,7 @@ function solution(n) {
 ```js
 function solution(n) { 
 	let arr = []; 
-	for(let i = 1; i < 1000; i++) { 
+	for(let i = 1; i < 1000; i++) { // i < n의 범위보다 큰 수
 		if(i % 3 !== 0 && !i.toString().split('').includes('3')) {
 			arr.push(i) 
 		} 
@@ -70,8 +70,10 @@ function solution(n) {
 
 
 ---
-### 
+### 다항식 더하기
 
+한 개 이상의 항의 합으로 이루어진 다항식을 동류항끼리 계산해 정리.
+덧셈으로 이루어진 다항식이 매개변수로 주어질 때, 동류항끼리 더한 결과값을 문자열로 구하기
 
 ```js
 
