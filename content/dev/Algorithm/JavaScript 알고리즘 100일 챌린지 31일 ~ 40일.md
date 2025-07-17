@@ -221,7 +221,8 @@ function solution(s) {
 
 ```js
 function solution(s) { 
-const s = 'aaabbcccccca'; const reg = /(\w)\1*/g // \w 문자열 // \1 재참조 메타문자 // * 0부터 여러번 반복 return [...s.matchAll(reg)]
+	const reg = /(\w)\1*/g // \w 문자열 // \1 재참조 메타문자 // * 0부터 여러번 반복 
+	return [...s.matchAll(reg)]
 }
 ```
 
