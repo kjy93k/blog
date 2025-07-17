@@ -202,10 +202,29 @@ function solution(s) {
 ---
 ### 문자열 압축하기
 
-문자열을 입력받아서, 같은 문자가 연속적으로 반복되는 경우에 그 반복 횟수를 표시하여 문자열을 압축
-```js
+문자열을 입력받아, 같은 문자가 연속적으로 반복되는 경우에 그 반복 횟수를 표시하여 문자열을 압축
 
+```js
+function solution(s) { 
+	let result = s[0]; 
+	let count = 0; 
+	for(let str of s) { 
+		if(str == result.slice(-1)) { 
+			count += 1;
+		} else { 
+			result += count + str count = 1;
+		} 
+	} 
+	return result += count;
+}
 ```
+
+```js
+function solution(s) { 
+const s = 'aaabbcccccca'; const reg = /(\w)\1*/g // \w 문자열 // \1 재참조 메타문자 // * 0부터 여러번 반복 return [...s.matchAll(reg)]
+}
+```
+
 
 
 
