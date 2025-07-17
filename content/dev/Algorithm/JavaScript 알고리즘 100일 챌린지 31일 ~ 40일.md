@@ -79,18 +79,18 @@ function solution(n) {
 function solution(polynomial) {
     const arr = polynomial.split(' + ');
     
-    const xArray = arr
-        .filter(v=>v.includes('x'))
-        .map(v=>parseInt(v.replace('x', '')) || 1)
-        .reduce((a, c)=>a+c,0);
+    const x_sum = arr
+        .filter(v => v.includes('x'))
+        .map(v => parseInt(v.replace('x', '')) || 1)
+        .reduce((a, c) => a + c, 0);
     
-    const 일반항 = arr
-        .filter(v=>!v.includes('x'))
-        .reduce((a, c)=>a+parseInt(c),0);
+    const constant_sum = arr
+        .filter(v => !v.includes('x'))
+        .reduce((a, c) => a + parseInt(c), 0);
     
     const answer = [];
-    x항 && answer.push(x항 === 1 ? 'x' : `${x항}x`);
-    일반항 && answer.push(일반항);
+    x_sum && answer.push(x_sum === 1 ? 'x' : `${x_sum}x`);
+    constant_sum && answer.push(constant_sum);
     
     return answer.join(' + ');
 }
