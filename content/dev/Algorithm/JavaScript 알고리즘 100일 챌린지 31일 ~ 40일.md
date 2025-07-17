@@ -192,8 +192,8 @@ function solution(s) {
 ```js
 // s = [1, 3, 4, 8, 13, 17, 20]
 function solution(s) { 
-	const ss = s.slice(1);
-	return s.map((v, i) => [v, ss[i]]).sort((a, b) => (a[1] - a[0]) - (b[1] - b[0]))[0];
+	const next = s.slice(1);
+	return s.map((v, i) => [v, next[i]]).sort((a, b) => (a[1] - a[0]) - (b[1] - b[0]))[0];
 }
 ```
 
