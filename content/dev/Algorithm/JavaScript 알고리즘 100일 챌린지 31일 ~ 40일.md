@@ -28,8 +28,35 @@ function solution(score) {
 
 정수 n이 매개변수로 주어질 때, n을 3x마을에서 사용하는 숫자로 바꿔 return하기
 
-```js
+| 10진법   | 3x 마을에서 쓰는 숫자       |
+| ------ | ------------------- |
+| 1      | 1                   |
+| 2      | 2                   |
+| 3      | 4                   |
+| 4      | 5                   |
+| 5      | 7                   |
+| 6      | 8                   |
+| 7      | 10                  |
+| 8      | 11                  |
+| 9      | 14                  |
+| 10     | 16                  |
 
+
+```js
+function solution(n) { 
+	let answer = 0; 
+	for(let _ = 0; _ < n; _++) { 
+		answer += 1;
+		while(answer % 3 == 0 || answer.toString().split('').includes('3')) {
+			answer += 1 
+		} 
+	} 
+	return answer; 
+}
+```
+
+```js
+function solution(n) { let arr = []; for(let i =1; i < 1000; i++){ if(i % 3 !== 0 && !i.toString().split('').includes('3')){ arr.push(i) } } return arr[n-1]; }
 ```
 
 
