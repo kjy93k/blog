@@ -157,21 +157,26 @@ function solution(lines) {
 
 
 ---
-### 
+### 구글 입사문제 중에서
 
+1부터 10,000까지 8이 총 몇번 나오는지 구하기
 
 ```js
-
+function solution() { 
+	return Array(10000).fill(0).map((v, i) => i).toString().split('').filter(v => v === '8').length;
+}
 ```
 
 
 
 ---
-### 
+### 다음 입사문제 중에서
 
 
 ```js
+function solution() { 
 
+}
 ```
 
 
