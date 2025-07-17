@@ -98,13 +98,29 @@ function solution(polynomial) {
 
 
 
-
 ---
-### 
+### 안전지대
 
+지뢰는 2차원 배열 board에 1로 표시되어 있고 지뢰에 인접한 위, 아래, 좌, 우 대각선 칸을 모두 위험지역으로 분류.
+지뢰가 매설된 지역의 지도 board가 매개변수로 주어질 때, 안전한 지역의 칸 수 구하기
 
 ```js
-
+function solution(board) { 
+	const n = board.length; 
+	const d = [ 
+		[0,0], 
+		[0,1], 
+		[0,-1], 
+		[1,1], 
+		[1,0], 
+		[1,-1], 
+		[-1,-1], 
+		[-1,0], 
+		[-1,1], 
+	]; 
+	let dangerZone = new Set(); 
+	for(let i = 0; i < n; i++) { 
+		for(let j=0; j<n; j++){ if(board[i][j] === 1){ d.forEach(v=>{ let [col, row] = [i+v[0], j+v[1]] if(col>=0 && col<n && row>=0 && row<n){ dangerZone.add(col+" "+row) } }) } } } return n*n - dangerZone.size }
 ```
 
 
