@@ -108,11 +108,11 @@ function solution(polynomial) {
 function solution(board) { 
 	const n = board.length; 
 	const d = [ 
-		[0,0], 
-		[0,1], 
-		[0,-1], 
-		[1,1], 
-		[1,0], 
+		[0,0], //self
+		[0,1], // 우
+		[0,-1], // 좌
+		[1,1], // 대각선 아래
+		[1,0], // 
 		[1,-1], 
 		[-1,-1], 
 		[-1,0], 
