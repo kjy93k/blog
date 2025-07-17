@@ -246,9 +246,18 @@ function solution(s) {
 ---
 ### Special Sort
 
+기존 양수, 음수의 배열의 순서에는 변함이 없이 음수들은 앞으로 양수들은 뒤로 정렬하기 (?)
 
 ```js
+funtion solution(value) { 
+	return value.filter(v => v < 0).concat(value.filter(v => v >= 0)) 
+}
+```
 
+```js
+funtion solution(value) { 
+	return [...value.filter(v => v < 0), ...value.filter(v => v >= 0)]
+}
 ```
 
 
