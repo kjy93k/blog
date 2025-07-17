@@ -172,10 +172,27 @@ function solution() {
 ---
 ### 다음 입사문제 중에서
 
+1차원의 정렬된 점들이 주어졌을 때, 그 중 가장 거리가 짧은 것의 쌍을 출력하기
 
 ```js
-function solution() { 
+// s = [1, 3, 4, 8, 13, 17, 20]
+function solution(s) { 
+	let index = 0;
+	let minim = Infinity;
+	for(let i = 1; i < s.length; i++) { 
+		if(s[i] - s[i - 1] < minim) { 
+			index = i;
+			min = s[i] - s[i-1];
+		} 
+	} 
+	return [s[index], s[index-1]]
+}
+```
 
+```js
+// s = [1, 3, 4, 8, 13, 17, 20]
+function solution(s) { 
+return s.map((v, i) => [v, ss[i]]).sort((a,b)=> (a[1]-a[0]) - (b[1]-b[0]))[0]
 }
 ```
 
