@@ -266,9 +266,16 @@ funtion solution(value) {
 ---
 ### 숫자 출력하기
 
+`20150111` 을 출력하기
+1. 코드내에 숫자 x
+2. 파일 이름이나 경로 사용 x
+3. 시간, 날짜 함수 사용 x
+4. 에러 번호 출력 x
 
 ```js
-
+function solution (number) {
+	parseInt(number.toString('!'.charCodeAt()),!)
+}
 ```
 
 
