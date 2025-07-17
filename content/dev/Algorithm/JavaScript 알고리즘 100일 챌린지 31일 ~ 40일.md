@@ -117,7 +117,7 @@ function solution(board) {
 		[-1,-1], 
 		[-1,0], 
 		[-1,1], 
-	]; 
+	]; // Set으로 위험지역을 1로 변환(Set => 중복 제거)
 	let dangerZone = new Set(); 
 	for (let i = 0; i < n; i++) { 
 		for (let j = 0; j < n; j++) { 
