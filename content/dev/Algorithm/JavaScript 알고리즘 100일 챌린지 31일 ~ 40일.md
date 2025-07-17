@@ -138,11 +138,20 @@ function solution(board) {
 
 
 ---
-### 
+###  겹치는 선분의 길이
 
+세 선분의 시작과 끝 좌표가 `[[start, end], [start, end], [start, end]]` 형태로 들어있는 2차원 배열 lines가 매개변수로 주어질 때, 두 개 이상의 선분이 겹치는 부분의 길이 구하기
 
 ```js
-
+function solution(lines) { 
+	let line = new Array(200).fill(0);
+	lines.forEach(([min, max]) => { 
+		for(; min < max; min++) { 
+			line[min+100]++; 
+		} 
+	});
+	return line.filter(v => v > 1).length; 
+}
 ```
 
 
