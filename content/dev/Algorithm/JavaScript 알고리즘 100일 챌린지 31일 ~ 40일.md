@@ -72,12 +72,30 @@ function solution(n) {
 ---
 ### 다항식 더하기
 
-한 개 이상의 항의 합으로 이루어진 다항식을 동류항끼리 계산해 정리.
-덧셈으로 이루어진 다항식이 매개변수로 주어질 때, 동류항끼리 더한 결과값을 문자열로 구하기
+한 개 이상의 항의 합으로 이루어진 다항식을 동류항끼리 계산해 결과값을 문자열로 구하기
+
 
 ```js
-
+function solution(polynomial) {
+    const arr = polynomial.split(' + ');
+    
+    const xArray = arr
+        .filter(v=>v.includes('x'))
+        .map(v=>parseInt(v.replace('x', '')) || 1)
+        .reduce((a, c)=>a+c,0);
+    
+    const 일반항 = arr
+        .filter(v=>!v.includes('x'))
+        .reduce((a, c)=>a+parseInt(c),0);
+    
+    const answer = [];
+    x항 && answer.push(x항 === 1 ? 'x' : `${x항}x`);
+    일반항 && answer.push(일반항);
+    
+    return answer.join(' + ');
+}
 ```
+
 
 
 
