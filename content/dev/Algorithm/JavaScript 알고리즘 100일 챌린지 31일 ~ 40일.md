@@ -274,11 +274,9 @@ funtion solution(value) {
 
 ```js
 function solution (number) {
-	parseInt(number.toString('!'.charCodeAt()),!)
+	parseInt(number.toString('!'.charCodeAt()),'!'.charCodeAt()) 
+	// 33진법으로 숫자를 문자로 치환하고 숫자로 재치환
 }
 ```
 
-
-
----
 
