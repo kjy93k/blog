@@ -182,17 +182,17 @@ function solution(s) {
 	for(let i = 1; i < s.length; i++) { 
 		if(s[i] - s[i - 1] < minim) { 
 			index = i;
-			min = s[i] - s[i-1];
+			min = s[i] - s[i - 1];
 		} 
 	} 
-	return [s[index], s[index-1]]
+	return [s[index], s[index - 1]]
 }
 ```
 
 ```js
 // s = [1, 3, 4, 8, 13, 17, 20]
 function solution(s) { 
-return s.map((v, i) => [v, ss[i]]).sort((a,b)=> (a[1]-a[0]) - (b[1]-b[0]))[0]
+	return s.map((v, i) => [v, ss[i]]).sort((a, b) => (a[1] - a[0]) - (b[1] - b[0]))[0];
 }
 ```
 
