@@ -222,7 +222,21 @@ function solution(s) {
 ```js
 function solution(s) { 
 	const reg = /(\w)\1*/g // \w 문자열 // \1 재참조 메타문자 // * 0부터 여러번 반복 
-	return [...s.matchAll(reg)]
+	return [...s.matchAll(reg)] 
+	/*
+	// [
+		// ['aaa', 'a', index:0, input: 'aaabbcccccca', ...]
+		// ['bb', 'b', index:0, input: 'aaabbcccccca', ...]
+		// ['cccccc', 'c', index:0, input: 'aaabbcccccca', ...]
+		// ['a', 'a', index:0, input: 'aaabbcccccca', ...]
+	// ]
+	*/*
+		.map(m => {
+			const chr   = m[1];           // 그룹 1: 문자
+      const count = m[0].length;    // 묶음 길이 = 반복 횟수
+      return chr + count;
+    })
+    .join('');
 }
 ```
 
